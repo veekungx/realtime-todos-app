@@ -5,6 +5,8 @@ services:
     image: todos-server
     ports: 
       - 4000:4000
+    volumes:
+      - ./server/src:/usr/src/app/src
   client:
     build: ./client
     image: todos-client
@@ -12,3 +14,5 @@ services:
       - 3000:3000
     links:
       - server
+    volumes:
+      - ./client/src:/usr/src/app/src
