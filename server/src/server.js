@@ -8,5 +8,6 @@ const server = express();
 server.get('/status', (req, res) => res.send('OK'));
 server.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
 //export for testing
 module.exports = server;
