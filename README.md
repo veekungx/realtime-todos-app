@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project represent my current developement skills, my workflow with git, TDD, unit test, GraphQL, React Storybooks
 
-Original todos app link
+Original example todos app link
 http://todomvc.com/examples/react/
 
 Basic features
