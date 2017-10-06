@@ -1,3 +1,5 @@
+const { makeExecutableSchema } = require('graphql-tools');
+const resolvers = require('./resolvers');
 
 const typeDefs = `
   enum TodoState {
@@ -20,6 +22,7 @@ const typeDefs = `
   }
 
   type TodoEdge{
+    node: Todo!
     cursor: String!
   }
 
@@ -39,3 +42,4 @@ const typeDefs = `
   }
 `
 
+module.exports = makeExecutableSchema({ typeDefs, resolvers })
