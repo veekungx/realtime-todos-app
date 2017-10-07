@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.scss';
-import logo from './logo.svg';
-import Todo from './features/todo/components/Todo/Todo';
-
-
+import Todo from '../../features/todo/components/Todo/Todo';
 
 class App extends Component {
   render() {
