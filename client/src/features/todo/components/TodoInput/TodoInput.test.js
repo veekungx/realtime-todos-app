@@ -20,10 +20,17 @@ describe('TodoInput', () => {
   });
 
   describe('Props', () => {
+
     it('should pass value to input', () => {
       const wrapper = shallow(<TodoInput value="Hello" />);
       expect(wrapper.find('.TodoInput__textInput').props().value).toEqual('Hello');
     });
+
+    it('should have state complete on complate all button', () => {
+      const wrapper = shallow(<TodoInput isCompleteAll />);
+      expect(wrapper.find('.TodoInput').hasClass('TodoInput--completeAll')).toEqual(true);
+    });
+
   });
 
   describe('Events', () => {
