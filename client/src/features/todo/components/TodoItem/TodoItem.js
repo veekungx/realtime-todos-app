@@ -2,6 +2,7 @@ import React from 'react';
 import { string, func, shape } from 'prop-types';
 import classnames from 'classnames';
 import { gql } from 'react-apollo';
+import { propType } from 'graphql-anywhere';
 import './TodoItem.scss';
 
 const TodoItem =
@@ -28,7 +29,7 @@ const TodoItem =
     );
 
 TodoItem.fragment = gql`
-  fragment TodoItem on Todo{
+  fragment TodoItem_todo on Todo{
     id
     title
     state
@@ -36,9 +37,7 @@ TodoItem.fragment = gql`
 `;
 
 TodoItem.propTypes = {
-  todo: shape({
-    title: string,
-  }),
+  todo: propType(TodoItem.fragment).isRequired,
   onDeleteTodo: func,
   onToggleTodo: func,
 };
@@ -47,4 +46,5 @@ TodoItem.defaultProps = {
   onDeleteTodo: undefined,
   onToggleTodo: undefined,
 };
+
 export default TodoItem;

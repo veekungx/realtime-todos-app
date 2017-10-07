@@ -5,7 +5,7 @@ import TodoItem from './TodoItem';
 
 const buildStory = (attrs) => {
   const todo = {
-    id: Math.round(Math.random() * 1000000).toString(),
+    id: Math.round(Math.random() * 1000000),
     title: 'Hello World',
     updatedAt: Date.now(),
     ...attrs,
@@ -14,7 +14,7 @@ const buildStory = (attrs) => {
   const props = {
     todo
   }
-  
+
   const handlers = {
     onDeleteTodo: action('onDeleteTodo'),
     onToggleTodo: action('onToggleTodo'),
