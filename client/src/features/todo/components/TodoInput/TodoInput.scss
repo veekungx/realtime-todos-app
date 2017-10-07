@@ -10,6 +10,7 @@
     font-size: 30px;
     font-weight: 300;
     transform: rotate(90deg);
+    color: #e6e6e6;
     &:before {
       content: '❯';
     }
@@ -17,8 +18,22 @@
   &__textInput {
     flex: 1;
     border: none;
+    color: #4d4d4d;
     font-size: $fontSizeMedium;
     font-weight: $fontWeightThin;
     padding: 10px;
+  }
+  input {
+    &::-webkit-input-placeholder {
+      color: #e6e6e6;
+    }
+  }
+}
+
+.TodoInput--completeAll {
+  .TodoInput {
+    &__completeAllButton {
+      color: #737373;
+    }
   }
 }

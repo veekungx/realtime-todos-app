@@ -6,4 +6,4 @@ import TodoInput from './TodoInput';
 storiesOf('TodoInput', module)
   .add('default', () => <TodoInput />)
   .add('has text', () => <TodoInput value="Some Text" />)
-  .add('all todos completed', () => <TodoInput isComplatedAll />);
+  .add('all todos completed', () => <TodoInput isCompleteAll />);
