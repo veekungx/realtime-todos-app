@@ -6,6 +6,8 @@ import TodoInput from '../TodoInput/TodoInput';
 import TodoList from '../TodoList/TodoList';
 import TodoFooter from '../TodoFooter/TodoFooter';
 
+import TodoListWithData from '../../containers/TodoListWithData/TodoListWithData';
+
 const Todo = () => (
   <div className='Todo'>
     <div className="Todo__title">
@@ -13,7 +15,7 @@ const Todo = () => (
     </div>
     <div className="Todo__container">
       <TodoInput />
-      <TodoList />
+      <TodoListWithData />
       <TodoFooter />
     </div>
   </div>
@@ -21,4 +23,5 @@ const Todo = () => (
 
 Todo.propTypes = {};
 Todo.defaultProps = {};
+
 export default Todo;

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import TodoList from './TodoList';
-import generateMockTodo from '../../../../helpers/generateMockTodo';
+import { generateMockNodeTodo } from '../../../../helpers/generateMockTodo';
 
 const buildStory = (edges = []) => {
   const todos = { edges }
@@ -17,27 +17,29 @@ const buildStory = (edges = []) => {
 };
 
 storiesOf('TodoList', module)
+  .add('loading', () => <TodoList loading={true} />)
+  .add('error', () => <TodoList error={new Error('Error Occurred!!!')} />)
   .add('all active', () => {
     const edges = [
-      generateMockTodo({ state: 'TODO_ACTIVE' }),
-      generateMockTodo({ state: 'TODO_ACTIVE' }),
-      generateMockTodo({ state: 'TODO_ACTIVE' }),
+      generateMockNodeTodo({ state: 'TODO_ACTIVE' }),
+      generateMockNodeTodo({ state: 'TODO_ACTIVE' }),
+      generateMockNodeTodo({ state: 'TODO_ACTIVE' }),
     ];
     return buildStory(edges);
   })
   .add('all completed', () => {
     const edges = [
-      generateMockTodo({ state: 'TODO_COMPLETED' }),
-      generateMockTodo({ state: 'TODO_COMPLETED' }),
-      generateMockTodo({ state: 'TODO_COMPLETED' }),
+      generateMockNodeTodo({ state: 'TODO_COMPLETED' }),
+      generateMockNodeTodo({ state: 'TODO_COMPLETED' }),
+      generateMockNodeTodo({ state: 'TODO_COMPLETED' }),
     ];
     return buildStory(edges);
   })
   .add('mix state', () => {
     const edges = [
-      generateMockTodo({ state: 'TODO_ACTIVE' }),
-      generateMockTodo({ state: 'TODO_COMPLETED' }),
-      generateMockTodo({ state: 'TODO_ACTIVE' }),
+      generateMockNodeTodo({ state: 'TODO_ACTIVE' }),
+      generateMockNodeTodo({ state: 'TODO_COMPLETED' }),
+      generateMockNodeTodo({ state: 'TODO_ACTIVE' }),
     ];
     return buildStory(edges);
   })

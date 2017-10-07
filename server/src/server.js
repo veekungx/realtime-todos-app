@@ -1,10 +1,18 @@
 const express = require('express');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const { addMockFunctionsToSchema } = require('graphql-tools');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const schema = require('./schema');
+const mocks = require('./mocks');
 const server = express();
+
+addMockFunctionsToSchema({
+  schema,
+  mocks,
+  preserveResolvers: true
+});
 
 server.use(cors());
 server.get('/status', (req, res) => res.send('OK'));

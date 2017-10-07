@@ -2,7 +2,6 @@
 @import '../../../../_responsive.scss';
 .TodoItem {
   position: relative;
-  height: 40px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ededed;
@@ -25,7 +24,7 @@
     font-weight: $fontWeightThin;
     white-space: pre-line;
     word-break: break-all;
-    padding: 15px 60px 15px 15px;
+    padding: 15px;
     margin-left: 45px;
     display: block;
     line-height: 1.2;
@@ -35,7 +34,7 @@
     cursor: pointer;
     outline: none;
     width: 40px;
-    display: none;
+    visibility: hidden;
     background: none;
     border: none;
     font-size: 30px;
@@ -50,7 +49,7 @@
   }
   &:hover {
     .TodoItem__deleteButton {
-      display: block;
+      visibility: visible;
     }
   }
 }

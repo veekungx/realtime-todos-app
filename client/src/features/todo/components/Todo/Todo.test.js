@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Todo from './Todo';
 import TodoInput from '../TodoInput/TodoInput';
-import TodoList from '../TodoList/TodoList';
+import TodoListWithData from '../../containers/TodoListWithData/TodoListWithData';
 import TodoFooter from '../TodoFooter/TodoFooter';
 
 describe('Todo', () => {
@@ -10,16 +10,16 @@ describe('Todo', () => {
     const wrapper = shallow(<Todo />);
     expect(wrapper.containsAllMatchingElements([
       <TodoInput />,
-      <TodoList />,
+      <TodoListWithData />,
       <TodoFooter />,
     ])).toEqual(true);
   });
 
   describe('Props', () => {
-    
+
   });
 
   describe('Events', () => {
-    
+
   });
 });
