@@ -1,4 +1,4 @@
-export default (attrs) => {
+export const generateMockTodo = (attrs) => {
   const todo = {
     id: Math.round(Math.random() * 100000),
     title: 'Title ' + Math.round(Math.random() * 100000),
@@ -10,3 +10,6 @@ export default (attrs) => {
   }
 };
 
+export const generateMockNodeTodo = (attrs) => {
+  return { node: generateMockTodo(attrs) };
+}
