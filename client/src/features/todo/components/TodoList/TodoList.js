@@ -15,6 +15,13 @@ const TodoList = (
   }
 ) => (
     <div className="TodoList">
+      
+      {!todos.edges.length &&
+        <div className="TodoList__noData">
+          You don't have any item on todo list. Try to add one.
+        </div>
+      }
+
       {todos.edges.map(todo =>
         <TodoItem
           key={todo.id}
