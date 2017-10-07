@@ -2,15 +2,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TodoFooter from './TodoFooter';
 import TodoFilterButton from '../TodoFilterButton/TodoFilterButton';
+import TodoCounter from '../TodoCounter/TodoCounter';
 
 describe('TodoFooter', () => {
   it('should render');
 
   describe('Compononents', () => {
-    it('should have TodoFilterButton', () => {
+    it('should have TodoFilterButton and TodoCounter', () => {
       const wrapper = shallow(<TodoFooter />);
       expect(wrapper.containsAllMatchingElements([
-        <TodoFilterButton />
+        <TodoFilterButton />,
+        <TodoCounter />
       ])).toEqual(true);
     });
 

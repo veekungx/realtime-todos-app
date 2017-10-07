@@ -11,18 +11,24 @@ const TodoFooter =
     onClear
   }) => (
       <div className='TodoFooter'>
-        
-        <TodoCounter />
-        <TodoFilterButton label="All" />
-        <TodoFilterButton label="Active" />
-        <TodoFilterButton label="Completed" />
 
-        <button
-          className="TodoFooter__clearButton"
-          onClick={onClear}
-        >
-          Clear Completed
-        </button>
+        <div className="TodoFooter__section">
+          <TodoCounter />
+        </div>
+        <div className="TodoFooter__section">
+          <TodoFilterButton label="All" />
+          <TodoFilterButton label="Active" />
+          <TodoFilterButton label="Completed" />
+        </div>
+        <div className="TodoFooter__section">
+          <button
+            className="TodoFooter__clearButton"
+            onClick={onClear}
+          >
+            Clear Completed
+          </button>
+        </div>
+
       </div>
     );
 
