@@ -17,6 +17,8 @@ const buildStory = (edges = []) => {
 };
 
 storiesOf('TodoList', module)
+  .add('loading', () => <TodoList loading={true} />)
+  .add('error', () => <TodoList error={new Error('Error Occurred!!!')} />)
   .add('all active', () => {
     const edges = [
       generateMockTodo({ state: 'TODO_ACTIVE' }),

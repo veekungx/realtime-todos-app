@@ -8,20 +8,25 @@ import TodoItem from '../TodoItem/TodoItem';
 const TodoList = (
   {
     // props
+    loading,
+    error,
     todos,
     // events
     onToggleTodo,
     onDeleteTodo,
   }
-) => (
+) => {
+  if (loading) return <div>Loading</div>;
+  if (error) return <div>{error.toString()}</div>;
+  if (!todos.edges.length) {
+    return (
+      <div className="TodoList__noData">
+        You don't have any item on todo list. Try to add one.
+      </div>
+    );
+  }
+  return (
     <div className="TodoList">
-      
-      {!todos.edges.length &&
-        <div className="TodoList__noData">
-          You don't have any item on todo list. Try to add one.
-        </div>
-      }
-
       {todos.edges.map(todo =>
         <TodoItem
           key={todo.id}
@@ -32,6 +37,7 @@ const TodoList = (
       }
     </div>
   );
+}
 
 TodoList.fragment = gql`
   fragment TodoList_todos on TodoConnection{
