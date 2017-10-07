@@ -1,0 +1,15 @@
+@import "../../../../_variables.scss";
+@import "../../../../_responsive.scss";
+.TodoFilterButton {
+  font-size: $fontSizeSmall;
+  color: $colorText;
+  font-weight: $fontWeightThin;
+  border: none;
+  background: none;
+  border: 1px solid none;
+}
+
+.TodoFilterButton--selected {
+  border: 1px solid rgba(175, 47, 47, 0.2);
+  border-radius: 3px;
+}

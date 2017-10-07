@@ -1,0 +1,18 @@
+@import "../../../../_variables.scss";
+@import "../../../../_responsive.scss";
+.TodoFooter {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+  padding: 10px 15px;
+  &__section {
+    margin: 0 30px;
+  }
+  &__clearButton {
+    color: $colorText;
+    font-size: $fontSizeSmall;
+    font-weight: $fontWeightThin;
+    background: none;
+    border: none;
+  }
+}

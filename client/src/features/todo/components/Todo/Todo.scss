@@ -1,0 +1,16 @@
+.Todo {
+  height: 100%;
+  background: rgb(245, 245, 245);
+  &__title {
+    font-size: 64px;
+    font-weight: 100;
+    color: rgba(175, 47, 47, 0.15);
+    text-align: center;
+  }
+  &__container {
+    margin: auto;
+    max-width: 550px;
+    background: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+}
