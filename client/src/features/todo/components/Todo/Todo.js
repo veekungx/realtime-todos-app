@@ -8,9 +8,14 @@ import TodoFooter from '../TodoFooter/TodoFooter';
 
 const Todo = () => (
   <div className='Todo'>
-    <TodoInput />
-    <TodoList />
-    <TodoFooter />
+    <div className="Todo__title">
+      REAL-TIME TODOS
+    </div>
+    <div className="Todo__container">
+      <TodoInput />
+      <TodoList />
+      <TodoFooter />
+    </div>
   </div>
 );
 
