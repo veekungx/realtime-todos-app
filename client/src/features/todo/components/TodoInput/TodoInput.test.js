@@ -8,7 +8,7 @@ describe('TodoInput', () => {
   describe('Components', () => {
     it('should have placeholder on input', () => {
       const wrapper = shallow(<TodoInput />);
-      expect(wrapper.find('.TodoInput__input').props().placeholder).toContain('What need to be done');
+      expect(wrapper.find('.TodoInput__textInput').props().placeholder).toContain('What needs to be done?');
     });
 
     it('should have complete all todos button', () => {
@@ -21,7 +21,7 @@ describe('TodoInput', () => {
     it('should handle onChangeText', () => {
       const handler = jest.fn();
       const wrapper = shallow(<TodoInput onChangeText={handler} />);
-      wrapper.find('.TodoInput__input').simulate('change');
+      wrapper.find('.TodoInput__textInput').simulate('change');
       expect(handler).toHaveBeenCalled();
     });
 
