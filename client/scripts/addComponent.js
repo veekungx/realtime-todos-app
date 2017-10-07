@@ -22,7 +22,7 @@ import {} from 'prop-types';
 import './${component}.scss';
 
 const ${component} = () => (
-  <div className="${component}">
+  <div className='${component}'>
     ${component}
   </div>
 );
@@ -37,22 +37,22 @@ fs.writeFile(`${path}/${component}/${component}.story.js`,
   `import React from 'react';
 import { storiesOf } from '@storybook/react'; 
 import { action } from '@storybook/addon-actions';
-import ${component} from "./${component}";
+import ${component} from './${component}';
 
 const props = {};
 const events = {};
 
-storiesOf("${component}",module)
-  .add("Default",()=> <${component} {...props} {...events}/>);
+storiesOf('${component}',module)
+  .add('Default',()=> <${component} {...props} {...events}/>);
 `, (err) => { console.log(err); });
 
 // [Component].test.js
 fs.writeFile(`${path}/${component}/${component}.test.js`,
   `import React from 'react';
 import { shallow } from 'enzyme';
-import ${component} from "./${component}";
+import ${component} from './${component}';
 
-describe("${component}",()=>{
+describe('${component}',()=>{
   it('should render');
 });
 `, (err) => { console.log(err); });
