@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TodoItem from './TodoItem';
-import generateMockTodo from '../../../../helpers/generateMockTodo';
+import { generateMockTodo } from '../../../../helpers/generateMockTodo';
 
 describe('TodoItem', () => {
   describe('Components', () => {
