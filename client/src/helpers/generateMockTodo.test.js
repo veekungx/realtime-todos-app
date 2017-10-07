@@ -11,12 +11,6 @@ describe('generateMockTodo', () => {
     expect(todo).toBeDefined();
   });
 
-  it('should return todo properties', () => {
-    const todo = generateMockTodo();
-    expect(todo.title).toEqual('Something');
-    expect(todo.state).toEqual('TODO_ACTIVE');
-  });
-
   it('should overwrite todo properties when given attributes', () => {
     const attrs = {
       id: 100,

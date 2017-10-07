@@ -1,7 +1,7 @@
 export default (attrs) => {
   const todo = {
     id: Math.round(Math.random() * 100000),
-    title: 'Something',
+    title: 'Title ' + Math.round(Math.random() * 100000),
     state: 'TODO_ACTIVE',
   }
   return {
