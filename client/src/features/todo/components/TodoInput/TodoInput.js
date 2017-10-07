@@ -5,6 +5,8 @@ import './TodoInput.scss';
 
 const TodoInput =
   ({
+    // props
+    value,
     // events
     onChangeText,
     onCompleteAll,
@@ -16,6 +18,7 @@ const TodoInput =
         />
         <input
           type="text"
+          value={value}
           placeholder="What needs to be done?"
           className="TodoInput__textInput"
           onChange={onChangeText}
