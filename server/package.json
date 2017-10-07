@@ -5,6 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "apollo-fetch": "^0.6.0",
+    "casual": "^1.5.17",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.1",
