@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TodoList from './TodoList';
-import TodoItem from '../TodoItem/TodoItem'
-import generateMockTodo from '../../../../helpers/generateMockTodo';
+import { generateMockNodeTodo } from '../../../../helpers/generateMockTodo';
 
 describe('TodoList', () => {
 
@@ -31,8 +30,8 @@ describe('TodoList', () => {
     it('should render todos', () => {
       const todos = {
         edges: [
-          generateMockTodo(),
-          generateMockTodo()
+          generateMockNodeTodo(),
+          generateMockNodeTodo()
         ]
       };
       const wrapper = shallow(<TodoList todos={todos} />);
@@ -40,19 +39,19 @@ describe('TodoList', () => {
     });
 
     it('should pass todo to TodoItem', () => {
-      const mockTodo = generateMockTodo();
+      const mockTodo = generateMockNodeTodo();
       const todos = {
         edges: [mockTodo]
       };
       const wrapper = shallow(<TodoList todos={todos} />);
-      expect(wrapper.find('TodoItem').at(0).props().todo).toEqual(mockTodo);
+      expect(wrapper.find('TodoItem').at(0).props().todo).toEqual(mockTodo.node);
     });
   });
 
   describe('Events', () => {
     it('should handle onDeleteTodo', () => {
       const handler = jest.fn();
-      const mockTodo = generateMockTodo();
+      const mockTodo = generateMockNodeTodo();
       const todos = {
         edges: [mockTodo]
       };
@@ -63,7 +62,7 @@ describe('TodoList', () => {
 
     it('should handle onToggleTodo', () => {
       const handler = jest.fn();
-      const mockTodo = generateMockTodo();
+      const mockTodo = generateMockNodeTodo();
       const todos = {
         edges: [mockTodo]
       };

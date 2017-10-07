@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, arrayOf, shape } from 'prop-types';
+import { bool, func, arrayOf, shape, instanceOf } from 'prop-types';
 import { gql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoList.scss';
@@ -27,10 +27,10 @@ const TodoList = (
   }
   return (
     <div className="TodoList">
-      {todos.edges.map(todo =>
+      {todos.edges.map(({ node }) =>
         <TodoItem
-          key={todo.id}
-          todo={todo}
+          key={node.id}
+          todo={node}
           onToggleTodo={onToggleTodo}
           onDeleteTodo={onDeleteTodo}
         />)
@@ -51,14 +51,20 @@ TodoList.fragment = gql`
 `;
 
 TodoList.propTypes = {
+  loading: bool,
+  error: instanceOf(Error),
   todos: shape({
-    edges: arrayOf(propType(TodoItem.fragment)).isRequired
+    edges: arrayOf(shape({
+      node: propType(TodoItem.fragment)
+    })).isRequired
   }),
   onDeleteTodo: func,
   onToggleTodo: func,
 };
 
 TodoList.defaultProps = {
+  loading: false,
+  error: undefined,
   todos: {
     edges: []
   },
