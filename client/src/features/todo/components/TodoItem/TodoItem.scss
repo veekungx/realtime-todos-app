@@ -21,8 +21,8 @@
   &__title {
     flex: 1;
     font-size: 24px;
-    color: $text;
-    font-weight: 300;
+    color: $colorText;
+    font-weight: $fontWeightThin;
     white-space: pre-line;
     word-break: break-all;
     padding: 15px 60px 15px 15px;
