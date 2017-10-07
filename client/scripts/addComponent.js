@@ -22,7 +22,7 @@ import {} from 'prop-types';
 import './${component}.scss';
 
 const ${component} = () => (
-  <div className='${component}'>
+  <div className="${component}">
     ${component}
   </div>
 );
