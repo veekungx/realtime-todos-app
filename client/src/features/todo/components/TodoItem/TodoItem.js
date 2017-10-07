@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, func, shape } from 'prop-types';
 import classnames from 'classnames';
-
+import { gql } from 'react-apollo';
 import './TodoItem.scss';
 
 const TodoItem =
@@ -26,6 +26,14 @@ const TodoItem =
         />
       </div>
     );
+
+TodoItem.fragment = gql`
+  fragment TodoItem on Todo{
+    id
+    title
+    state
+  }
+`;
 
 TodoItem.propTypes = {
   todo: shape({
