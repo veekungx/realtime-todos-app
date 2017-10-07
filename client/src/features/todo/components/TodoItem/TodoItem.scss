@@ -1,3 +1,5 @@
+@import '../../../../_variables.scss';
+@import '../../../../_responsive.scss';
 .TodoItem {
   position: relative;
   height: 40px;
@@ -19,7 +21,7 @@
   &__title {
     flex: 1;
     font-size: 24px;
-    color: #4d4d4d;
+    color: $text;
     font-weight: 300;
     white-space: pre-line;
     word-break: break-all;
