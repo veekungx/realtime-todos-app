@@ -3,7 +3,18 @@ const request = require('supertest');
 const server = require('./server');
 const mongoose = require('mongoose');
 const { TodoModel } = require('./models');
+const nock = require('nock');
 
+const fortuneServer = nock('http://fortunecookieapi.herokuapp.com/v1')
+  .get('/cookie')
+  .reply(200, [
+    {
+      fortune: {
+        message: "Drink like a fish, water only.",
+        id: "5403c81dc2fea4020029abcb"
+      }
+    }
+  ]);
 
 beforeEach(() => {
   mongoose.connect('mongodb://localhost/unit_test', {
@@ -28,6 +39,20 @@ describe('GraphQL', () => {
   });
 
   describe('Query', () => {
+    describe('fortune', () => {
+      it('should casting fortune', async () => {
+        const response = await request(server)
+          .post('/graphql')
+          .send({
+            query: `
+            {
+              fortune
+            }
+          `
+          });
+        expect(response.body.data.fortune).to.equal('Drink like a fish, water only.');
+      });
+    });
     describe('todos', () => {
       it('should return todos', async () => {
         const todo = new TodoModel({ title: 'Hi', state: 'TODO_ACTIVE' });
