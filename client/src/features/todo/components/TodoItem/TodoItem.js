@@ -1,17 +1,17 @@
 import React from 'react';
-import { string, func, shape } from 'prop-types';
+import { func } from 'prop-types';
 import classnames from 'classnames';
 import { gql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoItem.scss';
 
+import TodoRemoveButtonWithMutation from '../../containers/TodoRemoveButtonWithMutation/TodoRemoveButtonWithMutation'
 const TodoItem =
   ({
     // props
     todo,
 
     // events
-    onDeleteTodo,
     onToggleTodo
 
   }) => (
@@ -21,10 +21,7 @@ const TodoItem =
           onClick={onToggleTodo}
         />
         <div className="TodoItem__title">{todo.title}</div>
-        <button
-          className="TodoItem__deleteButton"
-          onClick={onDeleteTodo}
-        />
+        <TodoRemoveButtonWithMutation id={todo.id} />
       </div>
     );
 
@@ -38,12 +35,10 @@ TodoItem.fragment = gql`
 
 TodoItem.propTypes = {
   todo: propType(TodoItem.fragment).isRequired,
-  onDeleteTodo: func,
   onToggleTodo: func,
 };
 TodoItem.defaultProps = {
   todo: {},
-  onDeleteTodo: undefined,
   onToggleTodo: undefined,
 };
 

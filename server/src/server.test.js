@@ -90,5 +90,45 @@ describe('GraphQL', () => {
         expect(actual.id).to.eql(result._id.toString());
       })
     });
+
+    describe('removeTodo', () => {
+      let todo;
+      const query = `
+        mutation removeTodo($id:ID!){
+          removeTodo(id: $id){
+            id
+            title
+            state
+          }
+        }
+      `;
+
+      beforeEach(async () => {
+        todo = new TodoModel({ title: 'hello' });
+        await todo.save();
+      });
+
+      it('should remove todo by id', async () => {
+        const response = await request(server)
+          .post('/graphql')
+          .send({
+            query,
+            variables: { id: todo._id.toString() }
+          })
+        const result = await TodoModel.findOne();
+        expect(result).to.be.null;
+      });
+
+      it('should return null when no todo deleted', async () => {
+        const id = mongoose.Types.ObjectId();
+        const response = await request(server)
+          .post('/graphql')
+          .send({
+            query,
+            variables: { id }
+          })
+        expect(response.body.data.removeTodo).to.be.null;
+      })
+    });
   });
 })

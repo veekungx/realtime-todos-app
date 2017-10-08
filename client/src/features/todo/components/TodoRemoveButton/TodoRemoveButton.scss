@@ -1,0 +1,16 @@
+.TodoRemoveButton {
+  cursor: pointer;
+  outline: none;
+  width: 40px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+  &:hover {
+    color: #af5b5e;
+  }
+  &:after {
+    content: '×';
+  }
+}

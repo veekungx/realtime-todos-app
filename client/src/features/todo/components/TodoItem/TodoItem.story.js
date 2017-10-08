@@ -16,7 +16,6 @@ const buildStory = (attrs) => {
   }
 
   const handlers = {
-    onDeleteTodo: action('onDeleteTodo'),
     onToggleTodo: action('onToggleTodo'),
   }
 
