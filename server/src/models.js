@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/test', {
   useMongoClient: true,
   promiseLibrary: global.Promise
@@ -17,7 +18,6 @@ const TodoSchema = Schema({
 });
 
 const TodoModel = mongoose.model('Todo', TodoSchema);
-
 
 module.exports = {
   TodoModel
