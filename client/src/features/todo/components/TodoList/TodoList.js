@@ -4,6 +4,7 @@ import { gql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoList.scss';
 import TodoItem from '../TodoItem/TodoItem';
+import { LinearProgress } from 'material-ui/Progress';
 
 const TodoList = (
   {
@@ -16,7 +17,7 @@ const TodoList = (
     onDeleteTodo,
   }
 ) => {
-  if (loading) return <div>Loading</div>;
+  if (loading) return <LinearProgress />;
   if (error) return <div>{error.toString()}</div>;
   if (!todos.edges.length) {
     return (
