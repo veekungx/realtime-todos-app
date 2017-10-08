@@ -18,7 +18,7 @@ const TodoList = (
   }
 ) => {
   if (loading) return <LinearProgress />;
-  if (error) return <div>{error.toString()}</div>;
+  if (error) return <div className="TodoList__error">{error.toString()}</div>;
   if (!todos.edges.length) {
     return (
       <div className="TodoList__noData">
