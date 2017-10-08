@@ -2,7 +2,7 @@ import React from 'react';
 import { gql, graphql } from 'react-apollo';
 import TodoList from '../../components/TodoList/TodoList';
 
-const query = gql`
+export const TODO_LIST_QUERY = gql`
   query TodoListWithData{
     todos {
       edges {
@@ -24,4 +24,4 @@ const queryOptions = {
   }
 }
 
-export default graphql(query, queryOptions)(TodoList);
+export default graphql(TODO_LIST_QUERY, queryOptions)(TodoList);

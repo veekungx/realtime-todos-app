@@ -33,7 +33,12 @@ describe('TodoTextInput', () => {
 
     it('should handle onSubmit', () => {
       const handler = jest.fn();
-      const wrapper = shallow(<TodoTextInput onSubmit={handler} />);
+      const wrapper = shallow(<TodoTextInput
+        value="hi"
+        onChangeText={jest.fn()}
+        onSubmit={handler}
+      />);
+      
       wrapper.find('.TodoTextInput__form').simulate('submit', { preventDefault: jest.fn() });
       expect(handler).toHaveBeenCalled();
     })

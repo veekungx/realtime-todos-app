@@ -17,8 +17,18 @@ const TodoTextInput =
         <form
           className="TodoTextInput__form"
           onSubmit={async (e) => {
+            if (!value) return;
             e.preventDefault();
-            const response = await onSubmit({ variables: { title: value } });
+            await onSubmit({
+              variables: { title: value },
+              optimisticResponse: {
+                createTodo: {
+                  id: -1,
+                  title: value,
+                }
+              }
+            });
+            onChangeText('');
           }}
         >
           <input
