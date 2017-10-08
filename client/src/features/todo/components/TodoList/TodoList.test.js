@@ -46,6 +46,12 @@ describe('TodoList', () => {
       const wrapper = shallow(<TodoList todos={todos} />);
       expect(wrapper.find('TodoItem').at(0).props().todo).toEqual(mockTodo.node);
     });
+
+    it('should render loading', () => {
+      const wrapper = shallow(<TodoList loading={true} />);
+      expect(wrapper.find('withStyles(LinearProgress)').exists()).toEqual(true);
+    });
+ 
   });
 
   describe('Events', () => {
