@@ -5,11 +5,6 @@ import { generateMockTodo } from '../../../../helpers/generateMockTodo';
 
 describe('TodoItem', () => {
   describe('Components', () => {
-    it('should have delete button', () => {
-      const todo = generateMockTodo();
-      const wrapper = shallow(<TodoItem todo={todo} />);
-      expect(wrapper.find('TodoRemoveButton').exists()).toEqual(true);
-    });
     it('should have toggle button', () => {
       const todo = generateMockTodo();
       const wrapper = shallow(<TodoItem todo={todo} />);

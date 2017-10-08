@@ -13,7 +13,9 @@ const TodoRemoveButton =
   }) => (
       <button
         className="TodoRemoveButton"
-        onClick={onDeleteTodo}
+        onClick={() => {
+          onDeleteTodo({ variables: { id } })
+        }}
       />
     );
 
