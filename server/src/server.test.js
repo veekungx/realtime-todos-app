@@ -100,17 +100,30 @@ describe('GraphQL', () => {
           .post('/graphql')
           .send({
             query: `
-              mutation createTodo($title:String!){
-                createTodo(title: $title){
-                  id
-                  title
-                  state
+              mutation createTodo($TodoInput:TodoInput!){
+                createTodo(input: $TodoInput){
+                  todo{
+                    id
+                    title
+                    state
+                  }
+                  edge{
+                    node{
+                      id
+                      title
+                      state
+                    }
+                  }
                 }
               }
             `,
-            variables: { title }
+            variables: {
+              TodoInput: { title }
+            }
           })
-        const actual = response.body.data.createTodo;
+
+        // console.log(JSON.stringify(response.body.data, null, 2));
+        const actual = response.body.data.createTodo.todo;
         const result = await TodoModel.findOne();
         expect(actual.id).to.eql(result._id.toString());
       })

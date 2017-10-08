@@ -1,5 +1,17 @@
 const { makeExecutableSchema } = require('graphql-tools');
+const {
+  nodeInterface,
+  nodeField,
+  nodesField,
+  pageInfoType,
+  connectionDefinitions,
+  connectionArgs,
+  mutationWithClientMutationId,
+} = require('graphql-relay-tools');
+
 const resolvers = require('./resolvers');
+const { connectionType: TodoConnectionType } = connectionDefinitions({ name: "Todo" });
+const { mutationField, mutationType } = require('./mutations');
 
 const typeDefs = `
   enum TodoState {
@@ -7,14 +19,7 @@ const typeDefs = `
     TODO_COMPLETED
   }
 
-  type PageInfo{
-    hasNextPage: Boolean!
-    hasPreviousPage: Boolean!
-    startCursor: String
-    endCursor: String
-  }
-
-  type Todo {
+  type Todo implements Node{
     id: ID!
     title: String!
     state: TodoState!
@@ -22,31 +27,24 @@ const typeDefs = `
     updatedAt: Float!
   }
 
-  type TodoEdge{
-    node: Todo!
-    cursor: String!
-  }
-
-  type TodoConnection{
-    pageInfo: PageInfo!
-    edges: [TodoEdge]
-    totalCount: Int!
-  }
-
   type Query{
     fortune : String
-    todos(
-      before: String,
-      after: String,
-      first: Int,
-      last: Int
-    ): TodoConnection!
+    todos${connectionArgs()}: TodoConnection!
+    ${nodeField}
+    ${nodesField}
   }
 
   type Mutation{
-    createTodo(title: String!): Todo
+    createTodo${mutationField}
     removeTodo(id: ID!): Todo
   }
 `
-
-module.exports = makeExecutableSchema({ typeDefs, resolvers })
+module.exports = makeExecutableSchema({
+  typeDefs: [
+    nodeInterface,
+    pageInfoType,
+    TodoConnectionType,
+    mutationType,
+    typeDefs,
+  ], resolvers
+})

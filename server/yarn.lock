@@ -831,6 +831,12 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
+graphql-relay-tools@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/graphql-relay-tools/-/graphql-relay-tools-0.1.1.tgz#c6ca0d00c1ceddf08854544299d186ec5af474ca"
+  dependencies:
+    graphql-relay "^0.5.3"
+
 graphql-relay@^0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.5.3.tgz#56a78ac07c87d89795a34db6b8e9681b827be5b5"

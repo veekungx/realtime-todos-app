@@ -10,11 +10,11 @@ const { TodoModel } = require('./models');
 
 const server = express();
 
-addMockFunctionsToSchema({
-  schema,
-  mocks,
-  preserveResolvers: true
-});
+// addMockFunctionsToSchema({
+//   schema,
+//   mocks,
+//   preserveResolvers: true
+// });
 
 server.use(cors());
 server.get('/status', (req, res) => res.send('OK'));
