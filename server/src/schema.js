@@ -6,6 +6,7 @@ const typeDefs = `
     TODO_ACTIVE
     TODO_COMPLETED
   }
+
   type PageInfo{
     hasNextPage: Boolean!
     hasPreviousPage: Boolean!
@@ -33,6 +34,7 @@ const typeDefs = `
   }
 
   type Query{
+    fortune : String
     todos(
       before: String,
       after: String,
