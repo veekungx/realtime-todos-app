@@ -1,6 +1,6 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import { withState, compose } from 'recompose';
+import { withState, lifecycle, compose } from 'recompose';
 import { graphql, gql } from 'react-apollo';
 import { bool, func } from 'prop-types';
 
@@ -16,13 +16,14 @@ const FortuneTeller =
     onRequestClose
   }) => (
       <div className="FortuneTeller">
+        {isOpen}
         <Snackbar
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={isOpen}
-          onRequestClose={onRequestClose}
-          SnackbarContentProps={{
-            'aria-describedby': 'message-id',
+          onRequestClose={() => {
+            onRequestClose(() => false)
           }}
+          autoHideDuration={5000}
           message={fortune}
         />
       </div>
@@ -47,12 +48,16 @@ const query = gql`
    }
 `;
 
+const queryOptions = {
+  options: { pollInterval: 15000 },
+  props: ({ data, data: { loading, error, fortune } }) => {
+    if (loading) return
+    if (error) return
+    return { fortune }
+  }
+};
+
 export const FortuneTellerWithQuery = compose(
-  graphql(query, {
-    prop: ({ data: { loading, error, fortune } }) => {
-      if (loading) return
-      if (error) return
-      return { fortune }
-    }
-  })
+  withState('isOpen', 'onRequestClose', true),
+  graphql(query, queryOptions)
 )(FortuneTeller);
