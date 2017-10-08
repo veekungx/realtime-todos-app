@@ -25,7 +25,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "test": "mocha src/**/*.test.js",
-    "test:watch": "nodemon --exec 'mocha src/**/*.test.js'"
+    "test": "NODE_ENV=test mocha src/**/*.test.js",
+    "test:watch": "NODE_ENV=test nodemon --exec 'mocha src/**/*.test.js'"
   }
 }

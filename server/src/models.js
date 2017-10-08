@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const env = process.env.NODE_ENV;
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/test', {
-  useMongoClient: true,
-  promiseLibrary: global.Promise
-});
+if (env !== 'test') {
+  mongoose.connect('mongodb://localhost/test', {
+    useMongoClient: true,
+    promiseLibrary: global.Promise
+  });
+}
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 mongoose.connection.once('open', function () {

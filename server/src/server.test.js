@@ -4,6 +4,14 @@ const server = require('./server');
 const mongoose = require('mongoose');
 const { TodoModel } = require('./models');
 
+
+beforeEach(() => {
+  mongoose.connect('mongodb://localhost/unit_test', {
+    useMongoClient: true,
+    promiseLibrary: global.Promise
+  });
+});
+
 describe('GET /status', () => {
   it('should response OK', async () => {
     const response = await request(server)
