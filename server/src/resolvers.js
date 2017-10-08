@@ -1,7 +1,13 @@
+const axios = require('axios');
 const { connectionFromArray } = require('graphql-relay');
 const { TodoModel } = require('./models');
 const resolvers = {
   Query: {
+    fortune: async () => {
+      const response = await axios.get('http://fortunecookieapi.herokuapp.com/v1/cookie');
+      const fortune = response.data[0].fortune.message;
+      return fortune;
+    },
     todos: async (root, args, { models: { TodoModel } }) => {
       const todos = await TodoModel.find().lean();
       return connectionFromArray(todos, args);
