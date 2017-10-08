@@ -51,7 +51,11 @@ describe('TodoList', () => {
       const wrapper = shallow(<TodoList loading={true} />);
       expect(wrapper.find('withStyles(LinearProgress)').exists()).toEqual(true);
     });
- 
+    
+    it('should render error', () => {
+      const wrapper = shallow(<TodoList error={new Error('foo')} />);
+      expect(wrapper.find('.TodoList__error').exists()).toEqual(true);
+    });
   });
 
   describe('Events', () => {
