@@ -1,1 +1,8 @@
-.TodoTextInput{}
+.TodoTextInput {
+  flex: 1;
+  border: none;
+  color: #4d4d4d;
+  font-size: $fontSizeMedium;
+  font-weight: $fontWeightThin;
+  padding: 10px;
+}

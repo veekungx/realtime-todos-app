@@ -7,11 +7,6 @@ describe('TodoInput', () => {
 
   describe('Components', () => {
 
-    it('should have placeholder on input', () => {
-      const wrapper = shallow(<TodoInput />);
-      expect(wrapper.find('.TodoInput__textInput').props().placeholder).toContain('What needs to be done?');
-    });
-
     it('should have complete all todos button', () => {
       const wrapper = shallow(<TodoInput />);
       expect(wrapper.find('.TodoInput__completeAllButton').exists()).toEqual(true);
@@ -21,10 +16,6 @@ describe('TodoInput', () => {
 
   describe('Props', () => {
 
-    it('should pass value to input', () => {
-      const wrapper = shallow(<TodoInput value="Hello" />);
-      expect(wrapper.find('.TodoInput__textInput').props().value).toEqual('Hello');
-    });
 
     it('should have state complete on complate all button', () => {
       const wrapper = shallow(<TodoInput isCompleteAll />);
@@ -34,13 +25,6 @@ describe('TodoInput', () => {
   });
 
   describe('Events', () => {
-
-    it('should handle onChangeText', () => {
-      const handler = jest.fn();
-      const wrapper = shallow(<TodoInput onChangeText={handler} />);
-      wrapper.find('.TodoInput__textInput').simulate('change');
-      expect(handler).toHaveBeenCalled();
-    });
 
     it('should handle onCompleteAll', () => {
       const handler = jest.fn();

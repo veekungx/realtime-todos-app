@@ -1,14 +1,44 @@
 import React from 'react';
-import {} from 'prop-types';
+import { string, func } from 'prop-types';
 
 import './TodoTextInput.scss';
 
-const TodoTextInput = () => (
-  <div className="TodoTextInput">
-    TodoTextInput
-  </div>
-);
+const TodoTextInput =
+  ({
+    // props
+    value,
 
-TodoTextInput.propTypes = {};
-TodoTextInput.defaultProps = {};
+    // events
+    onChangeText,
+    onSubmit
+
+  }) => (
+      <div className="TodoTextInput">
+        <form
+          className="TodoTextInput__form"
+          onSubmit={onSubmit}
+        >
+          <input
+            className="TodoTextInput__textInput"
+            type="text"
+            value={value}
+            placeholder="What needs to be done?"
+            onChange={onChangeText}
+          />
+        </form>
+      </div>
+    );
+
+TodoTextInput.propTypes = {
+  value: string,
+  onChangeText: func,
+  onSubmit: func,
+};
+
+TodoTextInput.defaultProps = {
+  value: '',
+  onChangeText: undefined,
+  onSubmit: undefined,
+};
+
 export default TodoTextInput;
