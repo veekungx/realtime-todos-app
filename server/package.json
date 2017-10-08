@@ -26,6 +26,6 @@
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "test": "mocha src/**/*.test.js",
-    "test:watch": "mocha src/**/*.test.js -w"
+    "test:watch": "nodemon --exec 'mocha src/**/*.test.js'"
   }
 }
