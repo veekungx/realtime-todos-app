@@ -19,12 +19,13 @@
     "express": "^4.16.1",
     "graphql": "^0.11.7",
     "graphql-relay": "^0.5.3",
-    "graphql-tools": "^2.2.1"
+    "graphql-tools": "^2.2.1",
+    "mongoose": "^4.12.0"
   },
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "test": "mocha src/**/*.test.js",
-    "test:watch": "mocha src/**/*.test.js -w"
+    "test:watch": "nodemon --exec 'mocha src/**/*.test.js'"
   }
 }

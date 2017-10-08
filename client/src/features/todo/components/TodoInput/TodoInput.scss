@@ -15,14 +15,7 @@
       content: '❯';
     }
   }
-  &__textInput {
-    flex: 1;
-    border: none;
-    color: #4d4d4d;
-    font-size: $fontSizeMedium;
-    font-weight: $fontWeightThin;
-    padding: 10px;
-  }
+
   input {
     &::-webkit-input-placeholder {
       color: #e6e6e6;

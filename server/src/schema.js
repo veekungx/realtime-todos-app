@@ -40,6 +40,10 @@ const typeDefs = `
       last: Int
     ): TodoConnection!
   }
+
+  type Mutation{
+    createTodo(title: String!): Todo
+  }
 `
 
 module.exports = makeExecutableSchema({ typeDefs, resolvers })
