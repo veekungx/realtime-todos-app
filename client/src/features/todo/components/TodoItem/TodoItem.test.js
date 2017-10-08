@@ -8,7 +8,7 @@ describe('TodoItem', () => {
     it('should have delete button', () => {
       const todo = generateMockTodo();
       const wrapper = shallow(<TodoItem todo={todo} />);
-      expect(wrapper.find('.TodoItem__deleteButton').exists()).toEqual(true);
+      expect(wrapper.find('TodoRemoveButton').exists()).toEqual(true);
     });
     it('should have toggle button', () => {
       const todo = generateMockTodo();
@@ -39,13 +39,7 @@ describe('TodoItem', () => {
   });
 
   describe('Events', () => {
-    it('should handle onDeleteTodo', () => {
-      const handler = jest.fn();
-      const todo = generateMockTodo();
-      const wrapper = shallow(<TodoItem todo={todo} onDeleteTodo={handler} />);
-      wrapper.find('.TodoItem__deleteButton').simulate('click');
-      expect(handler).toHaveBeenCalled();
-    });
+
     it('should handle onToggleTodo', () => {
       const handler = jest.fn();
       const todo = generateMockTodo();

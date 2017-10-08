@@ -3,11 +3,19 @@ import { } from 'prop-types';
 
 import './TodoRemoveButton.scss';
 
-const TodoRemoveButton = ({ id }) => (
-  <div className="TodoRemoveButton">
-    TodoRemoveButton
-  </div>
-);
+const TodoRemoveButton =
+  ({
+    // props
+    id,
+
+    // events
+    onDeleteTodo
+  }) => (
+      <button
+        className="TodoRemoveButton"
+        onClick={onDeleteTodo}
+      />
+    );
 
 TodoRemoveButton.propTypes = {};
 TodoRemoveButton.defaultProps = {};
