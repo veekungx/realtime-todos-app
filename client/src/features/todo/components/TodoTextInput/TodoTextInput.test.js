@@ -27,14 +27,14 @@ describe('TodoTextInput', () => {
     it('should handle onChangeText', () => {
       const handler = jest.fn();
       const wrapper = shallow(<TodoTextInput onChangeText={handler} />);
-      wrapper.find('.TodoTextInput__textInput').simulate('change');
-      expect(handler).toHaveBeenCalled();
+      wrapper.find('.TodoTextInput__textInput').simulate('change', { target: { value: 'hello' } });
+      expect(handler).toHaveBeenCalledWith('hello');
     });
 
     it('should handle onSubmit', () => {
       const handler = jest.fn();
       const wrapper = shallow(<TodoTextInput onSubmit={handler} />);
-      wrapper.find('.TodoTextInput__form').simulate('submit');
+      wrapper.find('.TodoTextInput__form').simulate('submit', { preventDefault: jest.fn() });
       expect(handler).toHaveBeenCalled();
     })
 

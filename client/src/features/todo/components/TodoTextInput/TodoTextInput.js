@@ -16,14 +16,17 @@ const TodoTextInput =
       <div className="TodoTextInput">
         <form
           className="TodoTextInput__form"
-          onSubmit={onSubmit}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const response = await onSubmit({ variables: { title: value } });
+          }}
         >
           <input
             className="TodoTextInput__textInput"
             type="text"
             value={value}
             placeholder="What needs to be done?"
-            onChange={onChangeText}
+            onChange={e => onChangeText(e.target.value)}
           />
         </form>
       </div>

@@ -1,8 +1,22 @@
 import React from 'react';
-import { compose } from 'recompose';
+import { withState, compose } from 'recompose';
 import TodoTextInput from '../../components/TodoTextInput/TodoTextInput';
 import { gql, graphql } from 'react-apollo';
 
-export default compose(
+const mutation = gql`
+  mutation TodoTextInputWithMutation($title :String!){
+    createTodo(title: $title){
+      id
+      title
+      state
+    }
+  }
+`;
 
+
+export default compose(
+  withState('value', 'onChangeText', ''),
+  graphql(mutation, {
+    name: 'onSubmit'
+  })
 )(TodoTextInput);
