@@ -13,10 +13,16 @@ const resolvers = {
     }
   },
   Mutation: {
-    createTodo: async (root, { title }, context) => {
+    createTodo: async (root, { title }) => {
       const newTodo = new TodoModel({ title, state: "TODO_ACTIVE" });
-      await newTodo.save();
-      return Object.assign({}, newTodo, { id: newTodo._id.toString() });
+      const savedTodo = await newTodo.save();
+      return savedTodo;
+    },
+    removeTodo: async (root, { id }) => {
+      const result = await TodoModel.findByIdAndRemove(id);
+      return result
+        ? Object.assign({}, result, { id: result._id })
+        : null
     }
   }
 };
