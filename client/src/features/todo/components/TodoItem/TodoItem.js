@@ -5,7 +5,7 @@ import { gql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoItem.scss';
 
-import TodoRemoveButtonWithMutation from '../../containers/TodoRemoveButtonWithMutation/TodoRemoveButtonWithMutation'
+import { TodoRemoveButtonWithMutation } from '../../components/TodoRemoveButton/TodoRemoveButton'
 const TodoItem =
   ({
     // props

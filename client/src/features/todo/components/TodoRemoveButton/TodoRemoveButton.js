@@ -2,7 +2,7 @@ import React from 'react';
 import { string, func } from 'prop-types';
 import { compose } from 'recompose';
 import { gql, graphql } from 'react-apollo';
-
+import { TODO_LIST_QUERY } from '../TodoList/TodoList';
 
 import './TodoRemoveButton.scss';
 
@@ -16,8 +16,13 @@ const TodoRemoveButton =
   }) => (
       <button
         className="TodoRemoveButton"
-        onClick={() => {
-          onDeleteTodo({ variables: { id } })
+        onClick={async () => {
+          console.log(id);
+          onDeleteTodo({
+            variables: {
+              input: { id }
+            },
+          })
         }}
       />
     );
@@ -34,9 +39,14 @@ TodoRemoveButton.defaultProps = {
 export default TodoRemoveButton;
 
 const mutation = gql`
-  mutation TodoRemoveButton($id: ID!){
-    removeTodo(id: $id){
-      id
+  mutation TodoRemoveButton($input : RemoveTodoInput!){
+    removeTodo(input: $input){
+      edge{
+        node{
+          id
+          title
+        }
+      }
     }
   }
 `;
