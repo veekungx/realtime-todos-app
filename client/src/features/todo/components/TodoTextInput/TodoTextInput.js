@@ -35,6 +35,7 @@ const TodoTextInput =
               },
               optimisticResponse: {
                 createTodo: {
+                  __typename: "CreateTodoPayload",
                   edge: {
                     __typename: "TodoEdge",
                     node: {
