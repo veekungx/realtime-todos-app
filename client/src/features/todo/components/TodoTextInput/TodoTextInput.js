@@ -24,7 +24,7 @@ const TodoTextInput =
             e.preventDefault();
             await onSubmit({
               variables: {
-                CreateTodoInput: {
+                input: {
                   title: value
                 }
               },
@@ -36,18 +36,12 @@ const TodoTextInput =
               optimisticResponse: {
                 createTodo: {
                   __typename: "CreateTodoPayload",
-                  todo: {
-                    __typename: "Todo",
-                    id: "-1",
-                    title: "OK",
-                    state: "TODO_ACTIVE"
-                  },
                   edge: {
                     __typename: "TodoEdge",
                     node: {
                       __typename: "Todo",
                       id: "-1",
-                      title: "OK",
+                      title: value,
                       state: "TODO_ACTIVE"
                     }
                   }
@@ -83,8 +77,8 @@ TodoTextInput.defaultProps = {
 export default TodoTextInput;
 
 const mutation = gql`
-  mutation TodoTextInputWithMutation($CreateTodoInput :CreateTodoInput!){
-    createTodo(input: $CreateTodoInput){
+  mutation TodoTextInputWithMutation($input :CreateTodoInput!){
+    createTodo(input: $input){
       edge{
         node{
           id
