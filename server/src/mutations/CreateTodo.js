@@ -1,15 +1,12 @@
+const { TodoModel } = require('../types/Todo');
 const {
   mutationWithClientMutationId,
   offsetToCursor
  } = require('graphql-relay-tools');
-
-const { TodoModel } = require('./models');
-
-
 const {
-  mutationType: createTodoType,
-  mutationField: createTodoField,
-  mutationResolver: createTodoResolver
+  mutationType: CreateTodoType,
+  mutationField: CreateTodoField,
+  mutationResolver: CreateTodoResolver
 } = mutationWithClientMutationId({
     name: "CreateTodo",
     inputFields: `
@@ -19,9 +16,7 @@ const {
       todo: Todo
       edge: TodoEdge
     `,
-    mutateAndGetPayload: async (args, context) => {
-
-      const { title } = args;
+    mutateAndGetPayload: async ({ title, clientMutationId }, context) => {
       const newTodo = new TodoModel({ title, state: "TODO_ACTIVE" });
       await newTodo.save();
       return {
@@ -34,8 +29,9 @@ const {
     }
   });
 
+
 module.exports = {
-  createTodoType,
-  createTodoField,
-  createTodoResolver
+  CreateTodoType,
+  CreateTodoField,
+  CreateTodoResolver
 }
