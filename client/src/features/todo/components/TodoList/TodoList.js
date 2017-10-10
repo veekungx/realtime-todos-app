@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, func, arrayOf, shape, instanceOf } from 'prop-types';
+import { bool, func, instanceOf } from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoList.scss';
@@ -48,17 +48,14 @@ TodoList.fragment = gql`
       }
     }
   }
+
   ${TodoItem.fragment}
 `;
 
 TodoList.propTypes = {
   loading: bool,
   error: instanceOf(Error),
-  todos: shape({
-    edges: arrayOf(shape({
-      node: propType(TodoItem.fragment)
-    })).isRequired
-  }),
+  todos: propType(TodoList.fragment).isRequired,
   onDeleteTodo: func,
   onToggleTodo: func,
 };
@@ -78,15 +75,10 @@ export default TodoList;
 export const TODO_LIST_QUERY = gql`
   query TodoListWithData{
     todos {
-      edges {
-        node {
-          id
-          title
-          state
-        }
-      }
+      ...TodoList_todos
     }
   }
+  ${TodoList.fragment}
 `;
 
 const queryOptions = {

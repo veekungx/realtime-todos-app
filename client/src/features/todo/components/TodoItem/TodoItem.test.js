@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import TodoList from '../TodoList/TodoList';
 import TodoItem from './TodoItem';
 import { generateMockTodo } from '../../../../helpers/generateMockTodo';
 
