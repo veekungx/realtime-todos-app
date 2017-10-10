@@ -1,6 +1,6 @@
 import React from 'react';
 import { bool, func, arrayOf, shape, instanceOf } from 'prop-types';
-import { gql } from 'react-apollo';
+import { gql, graphql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoList.scss';
 import TodoItem from '../TodoItem/TodoItem';
@@ -74,3 +74,28 @@ TodoList.defaultProps = {
 };
 
 export default TodoList;
+
+export const TODO_LIST_QUERY = gql`
+  query TodoListWithData{
+    todos {
+      edges {
+        node {
+          id
+          title
+          state
+        }
+      }
+    }
+  }
+`;
+
+const queryOptions = {
+  props({ data: { loading, error, todos } }) {
+    if (loading) return { loading };
+    if (error) return { error };
+    return { todos };
+  }
+}
+
+export const TodoListWithData = graphql(TODO_LIST_QUERY, queryOptions)(TodoList);
+

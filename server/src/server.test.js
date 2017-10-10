@@ -7,13 +7,12 @@ const nock = require('nock');
 
 const fortuneServer = nock('http://fortunecookieapi.herokuapp.com/v1')
   .get('/cookie')
-  .reply(200,
-  {
+  .reply(200, [{
     fortune: {
       message: "Drink like a fish, water only.",
       id: "5403c81dc2fea4020029abcb"
     }
-  });
+  }]);
 
 beforeEach(() => {
   mongoose.connect('mongodb://localhost/unit_test', {

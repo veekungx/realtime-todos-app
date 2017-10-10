@@ -1,5 +1,8 @@
 import React from 'react';
 import { string, func } from 'prop-types';
+import { withState, compose } from 'recompose';
+import { gql, graphql } from 'react-apollo';
+import { TODO_LIST_QUERY } from '../TodoList/TodoList';
 
 import './TodoTextInput.scss';
 
@@ -20,11 +23,34 @@ const TodoTextInput =
             if (!value) return;
             e.preventDefault();
             await onSubmit({
-              variables: { title: value },
+              variables: {
+                CreateTodoInput: {
+                  title: value
+                }
+              },
+              update: (store, { data: { createTodo: { edge } } }) => {
+                const data = store.readQuery({ query: TODO_LIST_QUERY })
+                data.todos.edges.push(edge);
+                store.writeQuery({ query: TODO_LIST_QUERY, data });
+              },
               optimisticResponse: {
                 createTodo: {
-                  id: -1,
-                  title: value,
+                  __typename: "CreateTodoPayload",
+                  todo: {
+                    __typename: "Todo",
+                    id: "-1",
+                    title: "OK",
+                    state: "TODO_ACTIVE"
+                  },
+                  edge: {
+                    __typename: "TodoEdge",
+                    node: {
+                      __typename: "Todo",
+                      id: "-1",
+                      title: "OK",
+                      state: "TODO_ACTIVE"
+                    }
+                  }
                 }
               }
             });
@@ -55,3 +81,27 @@ TodoTextInput.defaultProps = {
 };
 
 export default TodoTextInput;
+
+const mutation = gql`
+  mutation TodoTextInputWithMutation($CreateTodoInput :CreateTodoInput!){
+    createTodo(input: $CreateTodoInput){
+      edge{
+        node{
+          id
+          title
+          state
+        }
+      }
+    }
+  }
+`;
+
+const mutationOptions = {
+  name: 'onSubmit'
+}
+
+
+export const TodoTextInputWithMutation = compose(
+  withState('value', 'onChangeText', ''),
+  graphql(mutation, mutationOptions)
+)(TodoTextInput);
