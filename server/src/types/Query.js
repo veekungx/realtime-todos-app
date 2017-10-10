@@ -27,7 +27,7 @@ const QueryResolver = {
   Query: {
     fortune: async () => {
       const response = await axios.get('http://fortunecookieapi.herokuapp.com/v1/cookie');
-      const fortune = response.data[0].fortune.message;
+      const fortune = response.data.fortune.message;
       return fortune;
     },
     todos: async (root, args) => {
