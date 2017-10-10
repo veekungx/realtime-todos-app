@@ -1,8 +1,8 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import { withState, lifecycle, compose } from 'recompose';
+import { withState, compose } from 'recompose';
 import { graphql, gql } from 'react-apollo';
-import { bool, func } from 'prop-types';
+import { string, bool, func } from 'prop-types';
 
 import './FortuneTeller.scss';
 
@@ -31,11 +31,13 @@ const FortuneTeller =
 
 FortuneTeller.propTypes = {
   isOpen: bool,
+  fortune: string,
   onRequestClose: func,
 };
 
 FortuneTeller.defaultProps = {
   isOpen: false,
+  fortune: "",
   onRequestClose: undefined,
 };
 
