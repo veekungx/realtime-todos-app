@@ -6,6 +6,7 @@ import { propType } from 'graphql-anywhere';
 import './TodoItem.scss';
 
 import { TodoRemoveButtonWithMutation } from '../../components/TodoRemoveButton/TodoRemoveButton'
+
 const TodoItem =
   ({
     // props
@@ -37,6 +38,7 @@ TodoItem.propTypes = {
   todo: propType(TodoItem.fragment).isRequired,
   onToggleTodo: func,
 };
+
 TodoItem.defaultProps = {
   todo: {},
   onToggleTodo: undefined,

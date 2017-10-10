@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Todo from './Todo';
 import TodoInput from '../TodoInput/TodoInput';
-import TodoListWithData from '../../containers/TodoListWithData/TodoListWithData';
+import { TodoListWithData } from '../../components/TodoList/TodoList';
 import TodoFooter from '../TodoFooter/TodoFooter';
 
 describe('Todo', () => {
