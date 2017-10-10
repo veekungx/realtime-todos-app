@@ -1,52 +1,30 @@
 const { makeExecutableSchema } = require('graphql-tools');
-const resolvers = require('./resolvers');
+const { nodeInterface, pageInfoType } = require('graphql-relay-tools');
 
-const typeDefs = `
-  enum TodoState {
-    TODO_ACTIVE
-    TODO_COMPLETED
-  }
+const { QuerySchema } = require('./types/Query');
+const { MutationSchema } = require('./types/Mutation');
 
-  type PageInfo{
-    hasNextPage: Boolean!
-    hasPreviousPage: Boolean!
-    startCursor: String
-    endCursor: String
-  }
+const { TodoSchema } = require('./types/Todo');
 
-  type Todo {
-    id: ID!
-    title: String!
-    state: TodoState!
-    createdAt: Float!
-    updatedAt: Float!
-  }
+const { QueryResolver } = require('./types/Query');
+const { TodoResolver } = require('./types/Todo');
+const { NodeResolver } = require('./types/Node');
+const { MutationResolver } = require('./types/Mutation');
 
-  type TodoEdge{
-    node: Todo!
-    cursor: String!
-  }
+const resolvers = Object.assign(
+  {},
+  NodeResolver,
+  TodoResolver,
+  QueryResolver,
+  MutationResolver
+);
 
-  type TodoConnection{
-    pageInfo: PageInfo!
-    edges: [TodoEdge]
-    totalCount: Int!
-  }
-
-  type Query{
-    fortune : String
-    todos(
-      before: String,
-      after: String,
-      first: Int,
-      last: Int
-    ): TodoConnection!
-  }
-
-  type Mutation{
-    createTodo(title: String!): Todo
-    removeTodo(id: ID!): Todo
-  }
-`
-
-module.exports = makeExecutableSchema({ typeDefs, resolvers })
+module.exports = makeExecutableSchema({
+  typeDefs: [
+    nodeInterface,
+    pageInfoType,
+    TodoSchema,
+    QuerySchema,
+    MutationSchema,
+  ], resolvers
+})
