@@ -6,7 +6,7 @@ import TodoInput from '../TodoInput/TodoInput';
 import TodoList from '../TodoList/TodoList';
 import TodoFooter from '../TodoFooter/TodoFooter';
 
-import TodoListWithData from '../../containers/TodoListWithData/TodoListWithData';
+import { TodoListWithData } from '../../components/TodoList/TodoList';
 
 const Todo = () => (
   <div className='Todo'>
