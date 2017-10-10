@@ -40,7 +40,7 @@ const TodoTextInput =
                     node: {
                       __typename: "Todo",
                       id: "-1",
-                      title: "OK",
+                      title: value,
                       state: "TODO_ACTIVE"
                     }
                   }
