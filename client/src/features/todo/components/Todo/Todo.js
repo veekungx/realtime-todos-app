@@ -1,9 +1,7 @@
 import React from 'react';
-import { } from 'prop-types';
 
 import './Todo.scss';
 import TodoInput from '../TodoInput/TodoInput';
-import TodoList from '../TodoList/TodoList';
 import TodoFooter from '../TodoFooter/TodoFooter';
 
 import { TodoListWithData } from '../../components/TodoList/TodoList';
