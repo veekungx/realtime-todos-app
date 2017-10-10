@@ -11,7 +11,7 @@ const {
 
 const resolvers = require('./resolvers');
 const { connectionType: TodoConnectionType } = connectionDefinitions({ name: "Todo" });
-const { mutationField, mutationType } = require('./mutations');
+const { createTodoField, createTodoType } = require('./mutations');
 
 const typeDefs = `
   enum TodoState {
@@ -35,7 +35,7 @@ const typeDefs = `
   }
 
   type Mutation{
-    createTodo${mutationField}
+    createTodo${createTodoField}
     removeTodo(id: ID!): Todo
   }
 `
@@ -44,7 +44,7 @@ module.exports = makeExecutableSchema({
     nodeInterface,
     pageInfoType,
     TodoConnectionType,
-    mutationType,
+    createTodoType,
     typeDefs,
   ], resolvers
 })

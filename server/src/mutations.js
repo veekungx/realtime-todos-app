@@ -7,9 +7,9 @@ const { TodoModel } = require('./models');
 
 
 const {
-  mutationType,
-  mutationField,
-  mutationResolver
+  mutationType: createTodoType,
+  mutationField: createTodoField,
+  mutationResolver: createTodoResolver
 } = mutationWithClientMutationId({
     name: "CreateTodo",
     inputFields: `
@@ -35,7 +35,7 @@ const {
   });
 
 module.exports = {
-  mutationType,
-  mutationField,
-  mutationResolver
+  createTodoType,
+  createTodoField,
+  createTodoResolver
 }

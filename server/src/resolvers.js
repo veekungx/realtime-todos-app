@@ -7,7 +7,7 @@ const {
   fromGlobalId,
   globalIdResolver,
 } = require('graphql-relay-tools');
-const { mutationResolver } = require('./mutations');
+const { createTodoResolver } = require('./mutations');
 const { nodeResolver, nodesResolver } = nodeDefinitions((globalId) => {
   const { type, id } = fromGlobalId(globalId);
   if (type === "Todo") {
@@ -44,7 +44,7 @@ const resolvers = {
     //   const savedTodo = await newTodo.save();
     //   return savedTodo;
     // },
-    createTodo: mutationResolver,
+    createTodo: createTodoResolver,
     removeTodo: async (root, { id }) => {
       const result = await TodoModel.findByIdAndRemove(id);
       return result
