@@ -3,7 +3,7 @@ import { string, func } from 'prop-types';
 import classnames from 'classnames';
 import './TodoInput.scss';
 
-import TodoTextInputWithMutation from '../../containers/TodoTextInputWithMutation/TodoTextInputWithMutation';
+import { TodoTextInputWithMutation } from '../../components/TodoTextInput/TodoTextInput';
 
 const TodoInput =
   ({
