@@ -37,6 +37,17 @@ describe('Todo', () => {
   });
 
   describe('Events', () => {
-
+    it('should handle onDeleteTodo', () => {
+      const handler = jest.fn();
+      const wrapper = shallow(<Todo onDeleteTodo={handler} />);
+      wrapper.find('TodoList').props().onDeleteTodo();
+      expect(handler).toHaveBeenCalled();
+    });
+    it('should handle onToggleTodo', () => {
+      const handler = jest.fn();
+      const wrapper = shallow(<Todo onToggleTodo={handler} />);
+      wrapper.find('TodoList').props().onToggleTodo();
+      expect(handler).toHaveBeenCalled();
+    });
   });
 });

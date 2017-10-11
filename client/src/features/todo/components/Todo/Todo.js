@@ -13,9 +13,11 @@ import { TodoListWithData } from '../../components/TodoList/TodoList';
 const Todo =
   ({
     // HOC
-    data: { loading, error, todos }
+    data: { loading, error, todos },
 
     // events
+    onDeleteTodo,
+    onToggleTodo,
   }) => {
     if (loading) return <LinearProgress />;
     if (error) return <div className="Todo__error">{error.toString()}</div>;
@@ -26,7 +28,7 @@ const Todo =
         </div>
         <div className="Todo__container">
           <TodoInput />
-          <TodoList todos={todos} />
+          <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
           <TodoFooter counter={todos.edges.length} />
         </div>
       </div>

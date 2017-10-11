@@ -1,0 +1,16 @@
+mutation ToggleTodo($input: ToggleTodoInput!){
+  toggleTodo(input:$input){
+    todo {
+      id
+      title
+      state
+    }
+    edge {
+      node {
+        id
+        title
+        state
+      }
+    }
+  }
+}
