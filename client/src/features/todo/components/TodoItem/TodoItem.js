@@ -16,10 +16,7 @@ const TodoItem =
 
   }) => (
       <div className={classnames("TodoItem", `TodoItem--${todo.state}`)}>
-        <button
-          className="TodoItem__toggleButton"
-          onClick={onToggleTodo}
-        />
+        
         <div className="TodoItem__title">{todo.title}</div>
         <TodoRemoveButtonWithMutation id={todo.id} />
       </div>
