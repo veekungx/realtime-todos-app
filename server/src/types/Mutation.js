@@ -15,7 +15,7 @@ const MutationSchema = `
     createTodo${CreateTodoField}
     removeTodo${RemoveTodoField}
     toggleTodo${ToggleTodoField}
-    clearCompletedTodo${ClearCompletedTodoField}
+    clearCompletedTodos${ClearCompletedTodoField}
   }
 `;
 
@@ -24,7 +24,7 @@ const MutationResolver = {
     createTodo: CreateTodoResolver,
     removeTodo: RemoveTodoResolver,
     toggleTodo: ToggleTodoResolver,
-    clearCompletedTodo: ClearCompletedTodoResolver,
+    clearCompletedTodos: ClearCompletedTodoResolver,
   }
 }
 
