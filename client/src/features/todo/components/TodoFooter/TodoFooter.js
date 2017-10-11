@@ -4,6 +4,7 @@ import { number, func } from 'prop-types';
 import './TodoFooter.scss';
 import TodoFilterButton from '../TodoFilterButton/TodoFilterButton';
 import TodoCounter from '../TodoCounter/TodoCounter';
+import TodoClearButtonWithClearCompletedTodos from '../../containers/TodoClearButtonWithClearCompletedTodos/TodoClearButtonWithClearCompletedTodos';
 
 const TodoFooter =
   ({
@@ -22,14 +23,8 @@ const TodoFooter =
           <TodoFilterButton label="Completed" />
         </div>
         <div className="TodoFooter__section">
-          <button
-            className="TodoFooter__clearButton"
-            onClick={onClear}
-          >
-            Clear Completed
-          </button>
+          <TodoClearButtonWithClearCompletedTodos />
         </div>
-
       </div>
     );
 

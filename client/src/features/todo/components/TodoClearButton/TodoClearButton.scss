@@ -1,0 +1,9 @@
+@import "../../../../stylesheets/_variables.scss";
+@import "../../../../stylesheets/_responsive.scss";
+.TodoClearButton {
+  color: $colorText;
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightThin;
+  background: none;
+  border: none;
+}
