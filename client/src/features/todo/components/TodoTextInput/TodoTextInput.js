@@ -2,9 +2,9 @@ import React from 'react';
 import { string, func } from 'prop-types';
 import { withState, compose } from 'recompose';
 import { gql, graphql } from 'react-apollo';
-import { TODO_LIST_QUERY } from '../TodoList/TodoList';
 
 import './TodoTextInput.scss';
+import TodoWithDataQuery from '../../containers/TodoWithData/TodoWithData.query.gql';
 
 const TodoTextInput =
   ({
@@ -29,9 +29,9 @@ const TodoTextInput =
                 }
               },
               update: (store, { data: { createTodo: { edge } } }) => {
-                const data = store.readQuery({ query: TODO_LIST_QUERY })
+                const data = store.readQuery({ query: TodoWithDataQuery })
                 data.todos.edges.push(edge);
-                store.writeQuery({ query: TODO_LIST_QUERY, data });
+                store.writeQuery({ query: TodoWithDataQuery, data });
               },
               optimisticResponse: {
                 createTodo: {

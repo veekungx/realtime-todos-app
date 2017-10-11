@@ -38,7 +38,7 @@ describe('TodoTextInput', () => {
         onChangeText={jest.fn()}
         onSubmit={handler}
       />);
-      
+
       wrapper.find('.TodoTextInput__form').simulate('submit', { preventDefault: jest.fn() });
       expect(handler).toHaveBeenCalled();
     })

@@ -1,0 +1,8 @@
+#import "../TodoItem/TodoItem.fragment.gql"
+fragment TodoList_todos on TodoConnection{
+  edges{
+    node{
+      ...TodoItem_todo
+    }
+  }
+}

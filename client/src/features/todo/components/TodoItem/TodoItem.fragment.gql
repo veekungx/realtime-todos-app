@@ -1,0 +1,5 @@
+fragment TodoItem_todo on Todo{
+  id
+  title
+  state
+}
