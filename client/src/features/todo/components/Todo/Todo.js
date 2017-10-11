@@ -6,10 +6,6 @@ import TodoFooter from '../TodoFooter/TodoFooter';
 import TodoList from '../TodoList/TodoList';
 import { LinearProgress } from 'material-ui/Progress';
 
-import { gql, graphql } from 'react-apollo';
-
-import { TodoListWithData } from '../../components/TodoList/TodoList';
-
 const Todo =
   ({
     // HOC

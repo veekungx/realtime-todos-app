@@ -1,5 +1,5 @@
 import { withHandlers, withState, compose } from 'recompose';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import TodoTextInput from '../../components/TodoTextInput/TodoTextInput';
 import CreateTodoMutation from './CreateTodo.mutation.gql';
 import TodoWithDataQuery from '../TodoWithData/TodoWithData.query.gql';

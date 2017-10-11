@@ -1,10 +1,9 @@
 import React from 'react';
-import { } from 'prop-types';
+import { number, func } from 'prop-types';
 
 import './TodoFooter.scss';
 import TodoFilterButton from '../TodoFilterButton/TodoFilterButton';
 import TodoCounter from '../TodoCounter/TodoCounter';
-import { gql } from 'react-apollo';
 
 const TodoFooter =
   ({
@@ -34,6 +33,12 @@ const TodoFooter =
       </div>
     );
 
-TodoFooter.propTypes = {};
-TodoFooter.defaultProps = {};
+TodoFooter.propTypes = {
+  counter: number,
+  onClear: func
+};
+TodoFooter.defaultProps = {
+  counter: 0,
+  onClear: undefined
+};
 export default TodoFooter;

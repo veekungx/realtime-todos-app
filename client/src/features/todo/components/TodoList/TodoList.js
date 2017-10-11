@@ -1,6 +1,5 @@
 import React from 'react';
 import { bool, func, instanceOf } from 'prop-types';
-import { gql, graphql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoList.scss';
 import TodoItem from '../TodoItem/TodoItem';
