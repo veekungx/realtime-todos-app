@@ -74,7 +74,8 @@
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js",
+      "^.+\\.(gql|graphql)$": "<rootDir>/node_modules/jest-transform-graphql"
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
@@ -107,6 +108,7 @@
     "apollo-test-utils": "^0.3.2",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
+    "jest-transform-graphql": "^2.1.0",
     "node-sass": "^4.5.3",
     "react-test-renderer": "^16.0.0",
     "sass-loader": "^6.0.6"
