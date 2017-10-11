@@ -1,7 +1,6 @@
 import Todo from '../../components/Todo/Todo';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { withHandlers, compose } from 'recompose';
-import TodoList from '../../components/TodoList/TodoList';
 import TodoWithDataQuery from './TodoWithData.query.gql';
 
 import ToggleTodoMutation from './ToggleTodo.mutation.gql';
@@ -13,7 +12,7 @@ export default compose(
   graphql(RemoveTodoMutation, { name: 'removeTodo' }),
   withHandlers({
     onCreateTodo: props => todo => {
-      
+
     },
     onDeleteTodo: props => todo => {
       const { id, title, state } = todo;

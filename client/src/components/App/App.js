@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.scss';
-import Todo from '../../features/todo/components/Todo/Todo';
 import { FortuneTellerWithQuery } from '../FortuneTeller/FortuneTeller';
 import TodoWithData from '../../features/todo/containers/TodoWithData/TodoWithData';
 class App extends Component {

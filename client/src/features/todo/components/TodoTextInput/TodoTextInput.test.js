@@ -45,6 +45,4 @@ describe('TodoTextInput', () => {
 
   });
 
-
-
 });
