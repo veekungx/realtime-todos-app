@@ -1,0 +1,16 @@
+mutation RemoveTodo($input: RemoveTodoInput!){
+  removeTodo(input: $input){
+    todo{
+      id
+      title
+      state
+    }
+    edge{
+      node{
+        id
+        title
+        state
+      }
+    }
+  }
+}
