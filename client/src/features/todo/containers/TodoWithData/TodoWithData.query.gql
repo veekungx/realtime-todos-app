@@ -1,0 +1,6 @@
+#import "../../components/TodoList/TodoList.fragment.gql"
+query {
+  todos{
+    ...TodoList_todos
+  }
+}

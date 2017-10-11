@@ -2,10 +2,9 @@ import React from 'react';
 import { string, func } from 'prop-types';
 import { compose } from 'recompose';
 import { gql, graphql } from 'react-apollo';
-import { TODO_LIST_QUERY } from '../TodoList/TodoList';
 
 import './TodoRemoveButton.scss';
-
+import TodoWithDataQuery from '../../containers/TodoWithData/TodoWithData.query.gql'
 const TodoRemoveButton =
   ({
     // props
@@ -21,15 +20,15 @@ const TodoRemoveButton =
             variables: {
               input: { id }
             },
-            update : (store, {data : {removeTodo : {todo : {id}}}}) => {
-              const data = store.readQuery({query : TODO_LIST_QUERY});
-              data.todos.edges = data.todos.edges.filter(({node}) => node.id !== id);
-              store.writeQuery({ query: TODO_LIST_QUERY, data });
+            update: (store, { data: { removeTodo: { todo: { id } } } }) => {
+              const data = store.readQuery({ query: TodoWithDataQuery });
+              data.todos.edges = data.todos.edges.filter(({ node }) => node.id !== id);
+              store.writeQuery({ query: TodoWithDataQuery, data });
             },
-            optimisticResponse : {
-              removeTodo : {
+            optimisticResponse: {
+              removeTodo: {
                 __typename: "RemoveTodoPayload",
-                todo : {
+                todo: {
                   __typename: "Todo",
                   id
                 }
@@ -61,6 +60,6 @@ const mutation = gql`
   }
 `;
 
-export const TodoRemoveButtonWithMutation =  compose(
+export const TodoRemoveButtonWithMutation = compose(
   graphql(mutation, { name: 'onDeleteTodo' }),
 )(TodoRemoveButton);

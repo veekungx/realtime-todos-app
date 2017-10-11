@@ -1,12 +1,11 @@
 import React from 'react';
 import { func } from 'prop-types';
 import classnames from 'classnames';
-import { gql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
+
 import './TodoItem.scss';
-
 import { TodoRemoveButtonWithMutation } from '../../components/TodoRemoveButton/TodoRemoveButton'
-
+import TodoItemFragment from './TodoItem.fragment.gql';
 const TodoItem =
   ({
     // props
@@ -26,16 +25,8 @@ const TodoItem =
       </div>
     );
 
-TodoItem.fragment = gql`
-  fragment TodoItem_todo on Todo{
-    id
-    title
-    state
-  }
-`;
-
 TodoItem.propTypes = {
-  todo: propType(TodoItem.fragment).isRequired,
+  todo: propType(TodoItemFragment).isRequired,
   onToggleTodo: func,
 };
 

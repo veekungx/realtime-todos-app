@@ -4,7 +4,7 @@ import { gql, graphql } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 import './TodoList.scss';
 import TodoItem from '../TodoItem/TodoItem';
-
+import TodoListFragment from './TodoList.fragment.gql';
 const TodoList = (
   {
     // props
@@ -35,22 +35,10 @@ const TodoList = (
   );
 }
 
-TodoList.fragment = gql`
-  fragment TodoList_todos on TodoConnection{
-    edges{
-      node{
-        ...TodoItem_todo
-      }
-    }
-  }
-
-  ${TodoItem.fragment}
-`;
-
 TodoList.propTypes = {
   loading: bool,
   error: instanceOf(Error),
-  todos: propType(TodoList.fragment).isRequired,
+  todos: propType(TodoListFragment).isRequired,
   onDeleteTodo: func,
   onToggleTodo: func,
 };
@@ -66,15 +54,6 @@ TodoList.defaultProps = {
 };
 
 export default TodoList;
-
-export const TODO_LIST_QUERY = gql`
-  query TodoListWithData{
-    todos {
-      ...TodoList_todos
-    }
-  }
-  ${TodoList.fragment}
-`;
 
 // const queryOptions = {
 //   props({ data: { loading, error, todos } }) {
