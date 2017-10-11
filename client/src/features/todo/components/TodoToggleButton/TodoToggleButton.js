@@ -1,21 +1,30 @@
 import React from 'react';
-import { } from 'prop-types';
-
+import { string, func } from 'prop-types';
+import classnames from 'classnames';
 import './TodoToggleButton.scss';
 
 const TodoToggleButton =
   ({
     // props
-
+    state,
     // events
     onToggleTodo
   }) => (
       <button
-        className="TodoToggleButton"
+        className={classnames("TodoToggleButton", `TodoToggleButton--${state}`)}
         onClick={onToggleTodo}
       />
     );
 
-TodoToggleButton.propTypes = {};
-TodoToggleButton.defaultProps = {};
+TodoToggleButton.propTypes = {
+  state: string,
+  onToggleTodo: func,
+
+};
+
+TodoToggleButton.defaultProps = {
+  state: "",
+  onToggleTodo: undefined,
+};
+
 export default TodoToggleButton;

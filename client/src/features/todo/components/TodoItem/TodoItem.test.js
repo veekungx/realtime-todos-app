@@ -5,10 +5,10 @@ import { generateMockTodo } from '../../../../helpers/generateMockTodo';
 
 describe('TodoItem', () => {
   describe('Components', () => {
-    xit('should have toggle button', () => {
+    it('should have toggle button', () => {
       const todo = generateMockTodo();
       const wrapper = shallow(<TodoItem todo={todo} />);
-      expect(wrapper.find('.TodoItem__toggleButton').exists()).toEqual(true);
+      expect(wrapper.find('TodoToggleButton').exists()).toEqual(true);
     });
   });
 

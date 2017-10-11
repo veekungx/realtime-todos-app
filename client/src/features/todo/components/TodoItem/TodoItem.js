@@ -2,9 +2,9 @@ import React from 'react';
 import { func } from 'prop-types';
 import classnames from 'classnames';
 import { propType } from 'graphql-anywhere';
-
 import './TodoItem.scss';
 import { TodoRemoveButtonWithMutation } from '../../components/TodoRemoveButton/TodoRemoveButton'
+import TodoToggleButton from '../TodoToggleButton/TodoToggleButton';
 import TodoItemFragment from './TodoItem.fragment.gql';
 const TodoItem =
   ({
@@ -16,7 +16,7 @@ const TodoItem =
 
   }) => (
       <div className={classnames("TodoItem", `TodoItem--${todo.state}`)}>
-        
+        <TodoToggleButton state={todo.state} />
         <div className="TodoItem__title">{todo.title}</div>
         <TodoRemoveButtonWithMutation id={todo.id} />
       </div>
