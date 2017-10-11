@@ -10,14 +10,17 @@ const {
 } = mutationWithClientMutationId({
     name: "ClearCompletedTodo",
     outputFields: `
+      todos: [Todo]
       status: Boolean
       total: Int
     `,
     mutateAndGetPayload: async ({ clientMutationId }, context) => {
-      const todos = await TodoModel.remove({ state: 'TODO_COMPLETED' });
+      const todos = await TodoModel.find({ state: 'TODO_COMPLETED' }).lean();
+      await TodoModel.remove({ state: 'TODO_COMPLETED' });
       return {
+        todos,
         status: true,
-        total: todos.result.n
+        total: todos.length
       };
     }
   });
