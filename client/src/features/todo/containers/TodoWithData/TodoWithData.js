@@ -1,10 +1,24 @@
 import Todo from '../../components/Todo/Todo';
 import { gql, graphql } from 'react-apollo';
-import { compose } from 'recompose';
+import { withHandlers, compose } from 'recompose';
 import TodoList from '../../components/TodoList/TodoList';
 import TodoWithDataQuery from './TodoWithData.query.gql';
 
-console.log(TodoWithDataQuery);
+import ToggleTodoMutation from './ToggleTodo.mutation.gql';
+
 export default compose(
-  graphql(TodoWithDataQuery)
+  graphql(TodoWithDataQuery),
+  graphql(ToggleTodoMutation, { name: "toggleTodo" }),
+  withHandlers({
+    onToggleTodo: props => todo => {
+      const { id } = todo;
+      props.toggleTodo({
+        variables: {
+          input: {
+            id
+          }
+        }
+      })
+    }
+  })
 )(Todo);

@@ -59,7 +59,7 @@ describe('TodoList', () => {
       };
       const wrapper = shallow(<TodoList todos={todos} onDeleteTodo={handler} />)
       wrapper.find('TodoItem').at(0).props().onDeleteTodo();
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith();
     });
 
     it('should handle onToggleTodo', () => {
@@ -70,7 +70,7 @@ describe('TodoList', () => {
       };
       const wrapper = shallow(<TodoList todos={todos} onToggleTodo={handler} />)
       wrapper.find('TodoItem').at(0).props().onToggleTodo();
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith();
     });
   })
 });

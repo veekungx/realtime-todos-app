@@ -11,6 +11,14 @@ const { TodoResolver } = require('./types/Todo');
 const { NodeResolver } = require('./types/Node');
 const { MutationResolver } = require('./types/Mutation');
 
+const typeDefs = [
+  nodeInterface,
+  pageInfoType,
+  TodoSchema,
+  QuerySchema,
+  MutationSchema,
+];
+
 const resolvers = Object.assign(
   {},
   NodeResolver,
@@ -20,11 +28,6 @@ const resolvers = Object.assign(
 );
 
 module.exports = makeExecutableSchema({
-  typeDefs: [
-    nodeInterface,
-    pageInfoType,
-    TodoSchema,
-    QuerySchema,
-    MutationSchema,
-  ], resolvers
+  typeDefs,
+  resolvers
 })
