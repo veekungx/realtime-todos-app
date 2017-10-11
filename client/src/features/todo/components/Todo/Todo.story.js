@@ -4,8 +4,16 @@ import { action } from '@storybook/addon-actions';
 
 import Todo from './Todo';
 
-const props = {};
+const props = {
+  data: {
+    todos: {
+      edges: []
+    }
+  }
+};
 const events = {};
 
 storiesOf('Todo', module)
-  .add('Default', () => <Todo {...props} {...events} />);
+  .add('loading', () => <Todo data={{ loading: true }} />)
+  .add('error', () => <Todo data={{ error: new Error('Error Occurred!!!') }} />)
+  .add('default', () => <Todo {...props} {...events} />);

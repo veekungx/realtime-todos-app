@@ -7,7 +7,13 @@ import TodoCounter from '../TodoCounter/TodoCounter';
 describe('TodoFooter', () => {
   it('should render');
 
-  describe('Compononents', () => {
+  describe('Props', () => {
+    it('should pass counter to TodoCounter', () => {
+      const wrapper = shallow(<TodoFooter counter={10} />);
+      expect(wrapper.find('TodoCounter').props().counter).toEqual(10);
+    });
+  });
+  describe('Components', () => {
     it('should have TodoFilterButton and TodoCounter', () => {
       const wrapper = shallow(<TodoFooter />);
       expect(wrapper.containsAllMatchingElements([

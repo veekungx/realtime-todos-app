@@ -4,16 +4,18 @@ import { } from 'prop-types';
 import './TodoFooter.scss';
 import TodoFilterButton from '../TodoFilterButton/TodoFilterButton';
 import TodoCounter from '../TodoCounter/TodoCounter';
+import { gql } from 'react-apollo';
 
 const TodoFooter =
   ({
+    // props
+    counter,
     // events
     onClear
   }) => (
       <div className='TodoFooter'>
-
         <div className="TodoFooter__section">
-          <TodoCounter />
+          <TodoCounter counter={counter} />
         </div>
         <div className="TodoFooter__section">
           <TodoFilterButton label="All" />

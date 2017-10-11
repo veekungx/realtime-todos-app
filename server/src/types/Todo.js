@@ -9,8 +9,6 @@ const TodoModelSchema = Schema({
 
 const TodoModel = mongoose.model('Todo', TodoModelSchema);
 
-const { connectionType: TodoConnectionType } = connectionDefinitions({ name: "Todo" });
-
 const TodoSchema = `
   enum TodoState {
     TODO_ACTIVE
@@ -25,13 +23,25 @@ const TodoSchema = `
     updatedAt: Float!
   }
 
-  ${TodoConnectionType}
+  type TodoEdge {
+    cursor: String!
+    node: Todo
+  }
+
+  type TodoConnection {
+    totalCount: Int!
+    edges: [TodoEdge]
+    pageInfo: PageInfo!
+  }
 `;
 
 const TodoResolver = {
   Todo: {
     id: globalIdResolver()
   },
+  TodoConnection: {
+    totalCount: (conn) => conn.edges.length,
+  }
 }
 module.exports = {
   TodoModel,
