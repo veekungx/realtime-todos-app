@@ -1,0 +1,11 @@
+mutation ClearCompletedTodo{
+  clearCompletedTodos(input:{}){
+    todos{
+      id
+      title
+      state
+    }
+    status
+    total
+  }
+}

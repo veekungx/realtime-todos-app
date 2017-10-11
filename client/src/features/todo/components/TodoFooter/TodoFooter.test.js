@@ -30,11 +30,6 @@ describe('TodoFooter', () => {
   });
 
   describe('Events', () => {
-    it('should handle onClear', () => {
-      const handler = jest.fn();
-      const wrapper = shallow(<TodoFooter onClear={handler} />);
-      wrapper.find('.TodoFooter__clearButton').simulate('click');
-      expect(handler).toHaveBeenCalled();
-    });
+   
   });
 });
