@@ -1,6 +1,6 @@
 import React from 'react';
 import { number } from 'prop-types';
-
+import { gql } from 'react-apollo';
 import './TodoCounter.scss';
 
 const TodoCounter =
