@@ -3,7 +3,7 @@ import { string, func } from 'prop-types';
 import classnames from 'classnames';
 import './TodoInput.scss';
 
-import { TodoTextInputWithMutation } from '../../components/TodoTextInput/TodoTextInput';
+import TodoTextInputWithCreateTodo from '../../containers/TodoTextInputWithCreateTodo/TodoTextInputWithCreateTodo';
 
 const TodoInput =
   ({
@@ -17,9 +17,7 @@ const TodoInput =
           className="TodoInput__completeAllButton"
           onClick={onCompleteAll}
         />
-
-        <TodoTextInputWithMutation />
-
+        <TodoTextInputWithCreateTodo />
       </div>
     );
 
