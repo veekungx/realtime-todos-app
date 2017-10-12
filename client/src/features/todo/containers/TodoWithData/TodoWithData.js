@@ -9,7 +9,7 @@ import RemoveTodoMutation from './RemoveTodo.mutation.gql';
 import TodoSubscription from './Todo.subscription.gql';
 
 
-const mapState = (state) => ({ filter: state.todo });
+const mapState = (state) => ({ filter: state.todo.filter });
 export default compose(
   connect(mapState),
   graphql(TodoWithDataQuery, {

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const mapState = (state, ownProps) => {
   return {
-    isSelected: state.todo === ownProps.filter
+    isSelected: state.todo.filter === ownProps.filter
   }
 };
 const mapDispatch = (dispatch) => {

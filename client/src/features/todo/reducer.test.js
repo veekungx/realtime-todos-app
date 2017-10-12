@@ -1,10 +1,16 @@
 import {
   default as reducer,
+
+  //const
   SET_FILTER,
+  SET_TEXT,
+
+  //actions
   setFilter,
+  setText,
+
 } from './reducer';
 describe('Todo state', () => {
-
   describe('Actions', () => {
     it('should create an action to set filter', () => {
       const filter = "TODO_ALL";
@@ -15,15 +21,42 @@ describe('Todo state', () => {
       };
       expect(actual).toEqual(expectedResult);
     });
+
+    it('should create an action set text', () => {
+      const text = "hello";
+      const actual = setText(text);
+      const expectedResult = {
+        type: SET_TEXT,
+        text
+      }
+    })
   });
   describe('Reducer', () => {
     it('should return initial state', () => {
+      const expectedResult = {
+        filter: "TODO_ALL",
+        text: ""
+      };
       const actual = reducer(undefined);
-      expect(actual).toEqual('TODO_ALL');
+      expect(actual).toEqual(expectedResult);
     });
     it('should handle SET_FILTER', () => {
-      const actual = reducer(undefined, setFilter('TODO_ACTIVE'));
-      const expectedResult = "TODO_ACTIVE";
+      const stateBefore = { filter: "TODO_ALL", text: "" };
+      const actual = reducer(stateBefore, setFilter('TODO_ACTIVE'));
+      const expectedResult = {
+        filter: "TODO_ACTIVE",
+        text: ""
+      };
+      expect(actual).toEqual(expectedResult);
+    });
+    it('should handle SET_TEXT', () => {
+      const stateBefore = { filter: "TODO_ALL", text: "" }
+      const text = "Hello";
+      const actual = reducer(stateBefore, setText(text));
+      const expectedResult = {
+        filter: "TODO_ALL",
+        text: "Hello"
+      }
       expect(actual).toEqual(expectedResult);
     });
   });
