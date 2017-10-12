@@ -31,7 +31,7 @@ export default compose(
   graphql(RemoveTodoMutation, { name: 'removeTodo' }),
   withHandlers({
     onDeleteTodo: props => todo => {
-      const { id, title, state } = todo;
+      const { id } = todo;
       props.removeTodo({
         variables: { input: { id } },
       })
@@ -57,8 +57,8 @@ export default compose(
                 ...previous,
                 todos: {
                   edges: [
-                    ...previous.todos.edges,
                     subTodo,
+                    ...previous.todos.edges,
                   ]
                 }
               }
