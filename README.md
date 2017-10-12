@@ -6,18 +6,18 @@ Original example todos app link
 http://todomvc.com/examples/react/
 
 Basic features
-- Add new todos
-- Delete todos
-- Count todos
-- Mark completed todos
+- [DONE] Add new todos
+- [DONE] Delete todos
+- [DONE] Count todos
+- [DONE] Mark completed todos
 - Filter all todos, active todos, completed todos
 
 What's I'm going to extends
-- Persistent data to MongoDB
-- Realtime todos application
+- [DONE] Persistent data to MongoDB
+- [DONE] Realtime todos application
 - Pagination with 5, 10, 25 items per page
-- Fortune telling when you are working on todos app
-- GraphQL service for better REST API
+- [BUG] Fortune telling when you are working on todos app
+- [DONE] GraphQL service for better REST API
 - Motion animation
 - Search on todos
 

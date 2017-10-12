@@ -25,7 +25,7 @@ const Todo =
         <div className="Todo__container">
           <TodoInput />
           <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
-          <TodoFooter counter={todos.edges.length} />
+          <TodoFooter counter={todos ? todos.edges.length : 0} />
         </div>
       </div>
     )

@@ -3,6 +3,7 @@ const {
   mutationWithClientMutationId,
   offsetToCursor
  } = require('graphql-relay-tools');
+const pubsub = require('../pubsub');
 const {
   mutationType: ClearCompletedTodoType,
   mutationField: ClearCompletedTodoField,
@@ -15,8 +16,20 @@ const {
       total: Int
     `,
     mutateAndGetPayload: async ({ clientMutationId }, context) => {
-      const todos = await TodoModel.find({ state: 'TODO_COMPLETED' }).lean();
+      const todos = await TodoModel.find({ state: 'TODO_COMPLETED' });
       await TodoModel.remove({ state: 'TODO_COMPLETED' });
+      todos.map(todo => {
+        pubsub.publish('Todo', {
+          Todo: {
+            mutation: "DELETED",
+            node: todo,
+            edges: {
+              node: todo
+            }
+          }
+        })
+      });
+
       return {
         todos,
         status: true,

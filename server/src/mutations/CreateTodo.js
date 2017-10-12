@@ -3,6 +3,8 @@ const {
   mutationWithClientMutationId,
   offsetToCursor
  } = require('graphql-relay-tools');
+const pubsub = require('../pubsub');
+
 const {
   mutationType: CreateTodoType,
   mutationField: CreateTodoField,
@@ -19,6 +21,15 @@ const {
     mutateAndGetPayload: async ({ title, clientMutationId }, context) => {
       const newTodo = new TodoModel({ title, state: "TODO_ACTIVE" });
       await newTodo.save();
+      pubsub.publish('Todo', {
+        Todo: {
+          mutation: 'CREATED',
+          node: newTodo,
+          edge: {
+            node: newTodo
+          }
+        }
+      })
       return {
         todo: newTodo,
         edge: {

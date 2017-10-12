@@ -4,6 +4,7 @@ const {
   offsetToCursor,
   fromGlobalId
  } = require('graphql-relay-tools');
+const pubsub = require('../pubsub');
 
 const {
   mutationType: RemoveTodoType,
@@ -21,6 +22,15 @@ const {
     mutateAndGetPayload: async ({ id, clientMutationId }, context) => {
       const todo = fromGlobalId(id);
       const result = await TodoModel.findByIdAndRemove(todo.id);
+      pubsub.publish('Todo', {
+        Todo: {
+          mutation: 'DELETED',
+          node: result,
+          edge: {
+            node: result
+          }
+        }
+      })
       return result
         ? {
           todo: result,

@@ -17,25 +17,25 @@ export default compose(
             title: props.value
           }
         },
-        update: (store, { data: { createTodo: { edge } } }) => {
-          const data = store.readQuery({ query: TodoWithDataQuery })
-          data.todos.edges.push(edge);
-          store.writeQuery({ query: TodoWithDataQuery, data });
-        },
-        optimisticResponse: {
-          createTodo: {
-            __typename: "CreateTodoPayload",
-            edge: {
-              __typename: "TodoEdge",
-              node: {
-                __typename: "Todo",
-                id: "-1",
-                title: props.value,
-                state: "TODO_ACTIVE"
-              }
-            }
-          }
-        }
+        // update: (store, { data: { createTodo: { edge } } }) => {
+        //   const data = store.readQuery({ query: TodoWithDataQuery })
+        //   data.todos.edges.push(edge);
+        //   store.writeQuery({ query: TodoWithDataQuery, data });
+        // },
+        // optimisticResponse: {
+        //   createTodo: {
+        //     __typename: "CreateTodoPayload",
+        //     edge: {
+        //       __typename: "TodoEdge",
+        //       node: {
+        //         __typename: "Todo",
+        //         id: "-1",
+        //         title: props.value,
+        //         state: "TODO_ACTIVE"
+        //       }
+        //     }
+        //   }
+        // }
       }).then(() => props.onChangeText(''));
     }
   }),
