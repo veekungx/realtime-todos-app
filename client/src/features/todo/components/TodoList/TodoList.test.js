@@ -34,7 +34,7 @@ describe('TodoList', () => {
           generateMockNodeTodo()
         ]
       };
-      const wrapper = shallow(<TodoList todos={todos} />);
+      const wrapper = shallow(<TodoList todos={todos} />).dive();
       expect(wrapper.find('TodoItem').length).toEqual(2);
     });
 
@@ -43,7 +43,7 @@ describe('TodoList', () => {
       const todos = {
         edges: [mockTodo]
       };
-      const wrapper = shallow(<TodoList todos={todos} />);
+      const wrapper = shallow(<TodoList todos={todos} />).dive();
       expect(wrapper.find('TodoItem').at(0).props().todo).toEqual(mockTodo.node);
     });
 
@@ -57,7 +57,7 @@ describe('TodoList', () => {
       const todos = {
         edges: [mockTodo]
       };
-      const wrapper = shallow(<TodoList todos={todos} onDeleteTodo={handler} />)
+      const wrapper = shallow(<TodoList todos={todos} onDeleteTodo={handler} />).dive()
       wrapper.find('TodoItem').at(0).props().onDeleteTodo();
       expect(handler).toHaveBeenCalledWith();
     });
@@ -68,7 +68,7 @@ describe('TodoList', () => {
       const todos = {
         edges: [mockTodo]
       };
-      const wrapper = shallow(<TodoList todos={todos} onToggleTodo={handler} />)
+      const wrapper = shallow(<TodoList todos={todos} onToggleTodo={handler} />).dive()
       wrapper.find('TodoItem').at(0).props().onToggleTodo();
       expect(handler).toHaveBeenCalledWith();
     });
