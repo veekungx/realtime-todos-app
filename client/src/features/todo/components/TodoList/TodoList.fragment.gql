@@ -1,6 +1,13 @@
 #import "../TodoItem/TodoItem.fragment.gql"
 fragment TodoList_todos on TodoConnection{
+  pageInfo{
+    endCursor
+    startCursor
+    hasNextPage
+    hasPreviousPage
+  }
   edges{
+    cursor
     node{
       ...TodoItem_todo
     }
