@@ -11,6 +11,7 @@ const TodoModel = mongoose.model('Todo', TodoModelSchema);
 
 const TodoSchema = `
   enum TodoState {
+    TODO_ALL
     TODO_ACTIVE
     TODO_COMPLETED
   }
