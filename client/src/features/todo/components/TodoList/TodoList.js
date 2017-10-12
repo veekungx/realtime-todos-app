@@ -80,14 +80,6 @@ const TodoList = (
               onDeleteTodo={onDeleteTodo}
             />
           )}
-          {/* {todos.edges.map(({ node }) =>
-            <TodoItem
-              key={node.id}
-              todo={node}
-              onToggleTodo={onToggleTodo}
-              onDeleteTodo={onDeleteTodo}
-            />)
-          } */}
         </div>
       }
     </TransitionMotion>
