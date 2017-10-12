@@ -57,15 +57,13 @@ export default compose(
         document: TodoAddedSubscription,
         updateQuery: (previous, { subscriptionData }) => {
 
-          const newTodos = [
-            { node: subscriptionData.data.todoAdded },
-            ...previous.todos.edges,
-          ]
-
           const result = {
             ...previous,
             todos: {
-              edges: newTodos
+              edges: [
+                subscriptionData.data.Todo.edge,
+                ...previous.todos.edges,
+              ]
             }
           }
 

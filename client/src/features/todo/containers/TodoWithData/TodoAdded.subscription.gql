@@ -1,7 +1,11 @@
 subscription{
-  todoAdded{
-    id
-    title
-    state
+  Todo{
+    edge{
+      node{
+        id
+        title
+        state
+      }
+    }
   }
 }

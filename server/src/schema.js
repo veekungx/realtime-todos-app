@@ -7,8 +7,6 @@ const { NodeResolver } = require('./types/Node');
 const { MutationSchema, MutationResolver } = require('./types/Mutation');
 const { SubscriptionSchema, SubscriptionResolver } = require('./types/Subscription');
 
-console.log(SubscriptionSchema)
-console.log(SubscriptionResolver)
 const typeDefs = [
   nodeInterface,
   pageInfoType,
