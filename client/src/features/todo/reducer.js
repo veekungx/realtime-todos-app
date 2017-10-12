@@ -16,11 +16,12 @@ export const SET_SEARCH = 'todo/SET_SEARCH';
 export const setFilter = (filter) => ({ type: SET_FILTER, filter });
 export const setText = (text) => ({ type: SET_TEXT, text });
 export const setSearch = (text) => ({ type: SET_SEARCH, text });
+
 // epic
 export const setTextEpic = (action$) =>
   action$
     .ofType(SET_TEXT)
-    .debounceTime(300)
+    .debounceTime(350)
     .map((action) => ({
       type: SET_SEARCH,
       text: action.text
@@ -28,7 +29,7 @@ export const setTextEpic = (action$) =>
 
 export const todoEpic = combineEpics(setTextEpic);
 
-export default (state = initialState, action = {}) => {
+export const todoReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_FILTER:
       return {

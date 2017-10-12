@@ -14,11 +14,11 @@ Basic features
 
 What's I'm going to extends
 - [DONE] Persistent data to MongoDB
-- [DONE] Realtime todos application
-- Pagination with 5, 10, 25 items per page
+- [DONE] Realtime todos application (open 2 browser tabs and try it)
+- [PROGRESS] Pagination
 - [BUG] Fortune telling when you are working on todos app
 - [DONE] GraphQL service for better REST API
-- Motion animation
-- Search on todos
+- [DONE] Motion animation
+- [DONE] Search on todos
 
 

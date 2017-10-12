@@ -4,7 +4,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 
 import {
-  default as todoReducer,
+  todoReducer,
   todoEpic
 } from './features/todo/reducer';
 
