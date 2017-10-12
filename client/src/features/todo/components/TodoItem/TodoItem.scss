@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ededed;
+  overflow: hidden;
   &__toggleButton {
     cursor: pointer;
     outline: none;
@@ -28,6 +29,9 @@
     display: block;
     line-height: 1.2;
     transition: color 0.4s;
+    @include mobile{
+      font-size: 20px;
+    }
   }
   &__deleteButton {
     cursor: pointer;
