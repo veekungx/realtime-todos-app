@@ -15,7 +15,6 @@ const Todo =
     onDeleteTodo,
     onToggleTodo,
   }) => {
-    if (loading) return <LinearProgress />;
     if (error) return <div className="Todo__error">{error.toString()}</div>;
     return (
       <div className='Todo'>
@@ -25,7 +24,10 @@ const Todo =
         <div className="Todo__container">
           <TodoFooter counter={todos ? todos.edges.length : 0} />
           <TodoInput />
-          <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
+          {!loading
+            ? <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
+            : <LinearProgress />
+          }
         </div>
       </div>
     )

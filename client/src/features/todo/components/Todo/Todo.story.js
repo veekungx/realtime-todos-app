@@ -5,6 +5,8 @@ import { action } from '@storybook/addon-actions';
 import Todo from './Todo';
 
 const props = {
+  filter: "",
+  text: "",
   data: {
     todos: {
       edges: []
