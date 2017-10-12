@@ -57,6 +57,7 @@ export default compose(
         document: TodoSubscription,
         updateQuery: (previous, { subscriptionData }) => {
           let subTodo;
+          let index;
           switch (subscriptionData.data.Todo.mutation) {
             case "CREATED":
               subTodo = subscriptionData.data.Todo.edge
@@ -71,12 +72,23 @@ export default compose(
               }
             case "DELETED":
               subTodo = subscriptionData.data.Todo.node;
+              console.log(subTodo);
               return {
                 ...previous,
                 todos: {
                   edges: previous.todos.edges.filter(({ node }) => node.id !== subTodo.id)
                 }
               }
+            // case "UPDATED":
+            //   subTodo = subscriptionData.data.Todo.node;
+            //   index = previous.todos.edges.findIndex(({ node }) => node.id === subTodo.id);
+            //   console.log(index);
+            //   return {
+            //     ...previous,
+            //     todos: {
+            //       edges: previous.todos.edges
+            //     }
+            //   }
             default:
               return;
           }

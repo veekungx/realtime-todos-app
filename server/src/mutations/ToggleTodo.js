@@ -4,6 +4,8 @@ const {
   offsetToCursor,
   fromGlobalId
  } = require('graphql-relay-tools');
+const pubsub = require('../pubsub');
+
 const {
   mutationType: ToggleTodoType,
   mutationField: ToggleTodoField,
@@ -24,6 +26,15 @@ const {
         ? "TODO_COMPLETED"
         : "TODO_ACTIVE";
       await todo.save();
+      pubsub.publish('Todo', {
+        Todo: {
+          mutation: 'UPDATED',
+          node: todo,
+          edge: {
+            node: todo
+          }
+        }
+      })
       return {
         todo,
         edge: {
