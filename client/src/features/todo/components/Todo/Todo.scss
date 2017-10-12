@@ -1,3 +1,5 @@
+@import "../../../../stylesheets/_variables.scss";
+@import "../../../../stylesheets/_responsive.scss";
 .Todo {
   background: rgb(245, 245, 245);
   padding-bottom: 100px;
@@ -7,14 +9,20 @@
     font-weight: 100;
     color: rgba(175, 47, 47, 0.15);
     text-align: center;
+    padding-top: 50px;
+    @include mobile {
+      font-size: 40px;
+      font-weight: 300;
+      padding: 50px 25px 25px;
+    }
   }
   &__container {
     margin: auto;
-    max-width: 550px;
     background: white;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    max-width: 550px;
   }
-  &__loading{
+  &__loading {
     display: flex;
     align-items: center;
     justify-content: center;
