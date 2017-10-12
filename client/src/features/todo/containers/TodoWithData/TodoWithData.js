@@ -1,14 +1,26 @@
 import Todo from '../../components/Todo/Todo';
 import { graphql } from 'react-apollo';
 import { withHandlers, lifecycle, compose } from 'recompose';
+import { connect } from 'react-redux';
 
 import TodoWithDataQuery from './TodoWithData.query.gql';
 import ToggleTodoMutation from './ToggleTodo.mutation.gql';
 import RemoveTodoMutation from './RemoveTodo.mutation.gql';
 import TodoSubscription from './Todo.subscription.gql';
 
+
+const mapState = (state) => ({ filter: state.todo });
 export default compose(
-  graphql(TodoWithDataQuery),
+  connect(mapState),
+  graphql(TodoWithDataQuery, {
+    options: (props) => {
+      return {
+        variables: {
+          state: props.filter
+        }
+      }
+    }
+  }),
   graphql(ToggleTodoMutation, { name: 'toggleTodo' }),
   graphql(RemoveTodoMutation, { name: 'removeTodo' }),
   withHandlers({

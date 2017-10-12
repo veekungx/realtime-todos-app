@@ -1,6 +1,6 @@
 #import "../../components/TodoList/TodoList.fragment.gql"
-query {
-  todos{
+query TodoQuery($state:TodoState){
+  todos(state: $state){
     ...TodoList_todos
   }
 }
