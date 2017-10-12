@@ -4,6 +4,7 @@ import './Todo.scss';
 import TodoInput from '../TodoInput/TodoInput';
 import TodoFooter from '../TodoFooter/TodoFooter';
 import TodoList from '../TodoList/TodoList';
+import TodoPagination from '../TodoPagination/TodoPagination';
 import { LinearProgress } from 'material-ui/Progress';
 
 const Todo =
@@ -26,6 +27,7 @@ const Todo =
           <TodoInput />
           {loading && <LinearProgress />}
           <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
+          <TodoPagination />
         </div>
       </div>
     )
