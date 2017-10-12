@@ -49,3 +49,5 @@ server.listen(PORT, () => {
   );
   console.log('Server start on port:' + PORT)
 });
+
+module.exports = server;
