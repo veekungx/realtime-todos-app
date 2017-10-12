@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const request = require('supertest');
-const server = require('./server');
+const server = require('./');
 const mongoose = require('mongoose');
 const { TodoModel } = require('./types/Todo');
 const nock = require('nock');
