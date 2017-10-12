@@ -3,12 +3,17 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import TodoInput from './TodoInput';
 
+
+const props = {
+  text: "",
+}
+
 const events = {
   onChangeText: action('onChangeText'),
   onCompleteAll: action('onCompleteAll'),
 }
 
 storiesOf('TodoInput', module)
-  .add('default', () => <TodoInput {...events} />)
-  .add('has text', () => <TodoInput value="Some Text" {...events} />)
-  .add('all todos completed', () => <TodoInput isCompleteAll {...events} />);
+  .add('default', () => <TodoInput {...props} {...events} />)
+  .add('has text', () => <TodoInput {...props} value="Some Text" {...events} />)
+  .add('all todos completed', () => <TodoInput {...props} isCompleteAll {...events} />);

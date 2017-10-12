@@ -8,15 +8,19 @@ import ToggleTodoMutation from './ToggleTodo.mutation.gql';
 import RemoveTodoMutation from './RemoveTodo.mutation.gql';
 import TodoSubscription from './Todo.subscription.gql';
 
+const mapState = (state) => ({
+  filter: state.todo.filter,
+  text: state.todo.text,
+});
 
-const mapState = (state) => ({ filter: state.todo.filter });
 export default compose(
   connect(mapState),
   graphql(TodoWithDataQuery, {
     options: (props) => {
       return {
         variables: {
-          state: props.filter
+          state: props.filter,
+          search: props.text
         }
       }
     }
@@ -77,14 +81,13 @@ export default compose(
                 ...previous,
                 todos: {
                   edges: [
-                    subTodo,
                     ...previous.todos.edges,
+                    subTodo,
                   ]
                 }
               }
             case "DELETED":
               subTodo = subscriptionData.data.Todo.node;
-              console.log(subTodo);
               return {
                 ...previous,
                 todos: {
