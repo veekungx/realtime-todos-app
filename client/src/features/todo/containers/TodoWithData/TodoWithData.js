@@ -5,7 +5,7 @@ import { withHandlers, lifecycle, compose } from 'recompose';
 import TodoWithDataQuery from './TodoWithData.query.gql';
 import ToggleTodoMutation from './ToggleTodo.mutation.gql';
 import RemoveTodoMutation from './RemoveTodo.mutation.gql';
-import TodoAddedSubscription from './TodoAdded.subscription.gql';
+import TodoSubscription from './Todo.subscription.gql';
 
 export default compose(
   graphql(TodoWithDataQuery),
@@ -54,20 +54,32 @@ export default compose(
     componentDidMount() {
       const { subscribeToMore } = this.props.data;
       subscribeToMore({
-        document: TodoAddedSubscription,
+        document: TodoSubscription,
         updateQuery: (previous, { subscriptionData }) => {
-
-          const result = {
-            ...previous,
-            todos: {
-              edges: [
-                subscriptionData.data.Todo.edge,
-                ...previous.todos.edges,
-              ]
-            }
+          let subTodo;
+          switch (subscriptionData.data.Todo.mutation) {
+            case "CREATED":
+              subTodo = subscriptionData.data.Todo.edge
+              return {
+                ...previous,
+                todos: {
+                  edges: [
+                    subTodo,
+                    ...previous.todos.edges,
+                  ]
+                }
+              }
+            case "DELETED":
+              subTodo = subscriptionData.data.Todo.node;
+              return {
+                ...previous,
+                todos: {
+                  edges: previous.todos.edges.filter(({ node }) => node.id !== subTodo.id)
+                }
+              }
+            default:
+              return;
           }
-
-          return result;
         }
       })
     }

@@ -1,0 +1,20 @@
+subscription{
+  Todo{
+    mutation
+    node{
+      __typename
+      id
+      title
+      state
+    }
+    edge{
+      __typename
+      node{
+        __typename
+        id
+        title
+        state
+      }
+    }
+  }
+}
