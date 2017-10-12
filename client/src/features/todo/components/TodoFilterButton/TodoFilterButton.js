@@ -8,6 +8,7 @@ const TodoFilterButton =
   ({
     // props
     label,
+    filter,
     isSelected,
     children,
     // events
@@ -15,7 +16,7 @@ const TodoFilterButton =
   }) => (
       <button
         className={classnames('TodoFilterButton', { 'TodoFilterButton--selected': isSelected })}
-        onClick={onSelect}
+        onClick={() => onSelect(filter)}
       >
         {label || children}
       </button>

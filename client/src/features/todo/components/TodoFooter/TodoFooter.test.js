@@ -30,6 +30,6 @@ describe('TodoFooter', () => {
   });
 
   describe('Events', () => {
-   
+
   });
 });

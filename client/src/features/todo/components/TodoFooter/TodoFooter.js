@@ -2,9 +2,9 @@ import React from 'react';
 import { number, func } from 'prop-types';
 
 import './TodoFooter.scss';
-import TodoFilterButton from '../TodoFilterButton/TodoFilterButton';
 import TodoCounter from '../TodoCounter/TodoCounter';
 import TodoClearButtonWithClearCompletedTodos from '../../containers/TodoClearButtonWithClearCompletedTodos/TodoClearButtonWithClearCompletedTodos';
+import TodoFilterButtonWithConnect from '../../containers/TodoFilterButtonWithConnect/TodoFilterButtonWithConnect';
 
 const TodoFooter =
   ({
@@ -18,9 +18,9 @@ const TodoFooter =
           <TodoCounter counter={counter} />
         </div>
         <div className="TodoFooter__section">
-          <TodoFilterButton label="All" />
-          <TodoFilterButton label="Active" />
-          <TodoFilterButton label="Completed" />
+          <TodoFilterButtonWithConnect filter="TODO_ALL" label="All" />
+          <TodoFilterButtonWithConnect filter="TODO_ACTIVE" label="Active" />
+          <TodoFilterButtonWithConnect filter="TODO_COMPLETED" label="Completed" />
         </div>
         <div className="TodoFooter__section">
           <TodoClearButtonWithClearCompletedTodos />

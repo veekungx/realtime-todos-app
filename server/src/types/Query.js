@@ -33,7 +33,6 @@ const QueryResolver = {
     },
     todos: async (root, args) => {
       const { state } = args;
-      console.log(state);
       let todos
       switch (state) {
         case "TODO_ALL":
