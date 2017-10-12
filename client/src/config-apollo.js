@@ -1,8 +1,14 @@
 import { createNetworkInterface, ApolloClient } from 'react-apollo';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { default as todoReducer } from './features/todo/reducer';
+import { createEpicMiddleware } from 'redux-observable';
 
+import {
+  default as todoReducer,
+  todoEpic
+} from './features/todo/reducer';
+
+const epicMiddleware = createEpicMiddleware(todoEpic);
 
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:4000/graphql',
@@ -28,7 +34,10 @@ export const store = createStore(
   }),
   {},
   compose(
-    applyMiddleware(client.middleware()),
+    applyMiddleware(
+      client.middleware(),
+      epicMiddleware
+    ),
     (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
   )
 )

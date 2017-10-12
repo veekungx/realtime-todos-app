@@ -10,7 +10,7 @@ import TodoSubscription from './Todo.subscription.gql';
 
 const mapState = (state) => ({
   filter: state.todo.filter,
-  text: state.todo.text,
+  search: state.todo.search,
 });
 
 export default compose(
@@ -20,8 +20,9 @@ export default compose(
       return {
         variables: {
           state: props.filter,
-          search: props.text
-        }
+          search: props.search
+        },
+        fetchPolicy: 'cache-and-network'
       }
     }
   }),
