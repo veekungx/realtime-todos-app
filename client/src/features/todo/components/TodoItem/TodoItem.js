@@ -8,12 +8,15 @@ const TodoItem =
   ({
     // props
     todo,
-
+    style,
     // events
     onToggleTodo,
     onDeleteTodo,
   }) => (
-      <div className={classnames("TodoItem", `TodoItem--${todo.state}`)}>
+      <div
+        className={classnames("TodoItem", `TodoItem--${todo.state}`)}
+        style={style}
+      >
         <button
           className="TodoItem__toggleButton"
           onClick={() => onToggleTodo(todo)}

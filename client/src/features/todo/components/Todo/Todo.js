@@ -24,10 +24,8 @@ const Todo =
         <div className="Todo__container">
           <TodoFooter counter={todos ? todos.edges.length : 0} />
           <TodoInput />
-          {!loading
-            ? <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
-            : <LinearProgress />
-          }
+          {loading && <LinearProgress />}
+          <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
         </div>
       </div>
     )
