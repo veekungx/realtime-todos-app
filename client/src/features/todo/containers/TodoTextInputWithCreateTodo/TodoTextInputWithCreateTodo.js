@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import { withHandlers, withState, compose } from 'recompose';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
@@ -8,7 +9,7 @@ import CreateTodoMutation from './CreateTodo.mutation.gql';
 
 const mapState = (state) => {
   return {
-    value: state.todo.text
+    value: get(state, 'todo.text')
   }
 }
 

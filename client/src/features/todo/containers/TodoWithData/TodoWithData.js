@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import Todo from '../../components/Todo/Todo';
 import { graphql } from 'react-apollo';
 import { withHandlers, lifecycle, compose } from 'recompose';
@@ -9,8 +10,8 @@ import RemoveTodoMutation from './RemoveTodo.mutation.gql';
 import TodoSubscription from './Todo.subscription.gql';
 
 const mapState = (state) => ({
-  filter: state.todo.filter,
-  search: state.todo.search,
+  filter: get(state, 'todo.filter'),
+  text: get(state, 'todo.text'),
 });
 
 export default compose(
