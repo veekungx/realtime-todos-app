@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const TodoModelSchema = Schema({
   title: String,
-  state: String
+  state: String,
+  createdAt: Date
 });
 
 const TodoModel = mongoose.model('Todo', TodoModelSchema);
