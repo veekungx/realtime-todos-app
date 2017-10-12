@@ -1,0 +1,7 @@
+subscription{
+  todoAdded{
+    id
+    title
+    state
+  }
+}

@@ -1,19 +1,17 @@
 import Todo from '../../components/Todo/Todo';
 import { graphql } from 'react-apollo';
-import { withHandlers, compose } from 'recompose';
-import TodoWithDataQuery from './TodoWithData.query.gql';
+import { withHandlers, lifecycle, compose } from 'recompose';
 
+import TodoWithDataQuery from './TodoWithData.query.gql';
 import ToggleTodoMutation from './ToggleTodo.mutation.gql';
 import RemoveTodoMutation from './RemoveTodo.mutation.gql';
+import TodoAddedSubscription from './TodoAdded.subscription.gql';
 
 export default compose(
   graphql(TodoWithDataQuery),
   graphql(ToggleTodoMutation, { name: 'toggleTodo' }),
   graphql(RemoveTodoMutation, { name: 'removeTodo' }),
   withHandlers({
-    onCreateTodo: props => todo => {
-
-    },
     onDeleteTodo: props => todo => {
       const { id, title, state } = todo;
       props.removeTodo({
@@ -49,6 +47,30 @@ export default compose(
       const { id } = todo;
       props.toggleTodo({
         variables: { input: { id } }
+      })
+    }
+  }),
+  lifecycle({
+    componentDidMount() {
+      const { subscribeToMore } = this.props.data;
+      subscribeToMore({
+        document: TodoAddedSubscription,
+        updateQuery: (previous, { subscriptionData }) => {
+
+          const newTodos = [
+            { node: subscriptionData.data.todoAdded },
+            ...previous.todos.edges,
+          ]
+
+          const result = {
+            ...previous,
+            todos: {
+              edges: newTodos
+            }
+          }
+
+          return result;
+        }
       })
     }
   })
