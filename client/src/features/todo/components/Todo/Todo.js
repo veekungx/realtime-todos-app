@@ -23,9 +23,9 @@ const Todo =
           REAL-TIME TODOS
         </div>
         <div className="Todo__container">
+          <TodoFooter counter={todos ? todos.edges.length : 0} />
           <TodoInput />
           <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
-          <TodoFooter counter={todos ? todos.edges.length : 0} />
         </div>
       </div>
     )

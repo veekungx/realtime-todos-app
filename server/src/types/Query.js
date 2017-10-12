@@ -13,6 +13,7 @@ const QuerySchema = `
   type Query{
     fortune : String
     todos(
+      state: TodoState = TODO_ALL
       first: Int
       last: Int
       after: String
@@ -31,7 +32,23 @@ const QueryResolver = {
       return fortune;
     },
     todos: async (root, args) => {
-      const todos = await TodoModel.find();
+      const { state } = args;
+      let todos
+      switch (state) {
+        case "TODO_ALL":
+          todos = await TodoModel.find();
+          break;
+        case "TODO_ACTIVE":
+          todos = await TodoModel.find({ state: "TODO_ACTIVE" });
+          break;
+        case "TODO_COMPLETED":
+          todos = await TodoModel.find({ state: "TODO_COMPLETED" });
+          break;
+        default:
+          todos = await TodoModel.find();
+          break;
+      }
+
       return connectionFromArray(todos, args);
     },
     node: nodeResolver,

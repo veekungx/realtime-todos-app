@@ -10,7 +10,7 @@ Basic features
 - [DONE] Delete todos
 - [DONE] Count todos
 - [DONE] Mark completed todos
-- Filter all todos, active todos, completed todos
+- [DONE] Filter all todos, active todos, completed todos
 
 What's I'm going to extends
 - [DONE] Persistent data to MongoDB

@@ -25,10 +25,10 @@ describe('TodoFilterButton', () => {
   describe('Events', () => {
     it('should handle onSelect', () => {
       const handler = jest.fn();
-      const wrapper = shallow(<TodoFilterButton onSelect={handler} />);
+      const wrapper = shallow(<TodoFilterButton filter="TODO_ALL" onSelect={handler} />);
 
       wrapper.find('.TodoFilterButton').simulate('click');
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith("TODO_ALL");
     });
   });
 });
