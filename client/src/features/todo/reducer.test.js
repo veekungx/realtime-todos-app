@@ -1,5 +1,5 @@
 import {
-  default as reducer,
+  todoReducer,
 
   //const
   SET_FILTER,
@@ -37,12 +37,12 @@ describe('Todo state', () => {
         filter: "TODO_ALL",
         text: ""
       };
-      const actual = reducer(undefined);
+      const actual = todoReducer(undefined);
       expect(actual).toEqual(expectedResult);
     });
     it('should handle SET_FILTER', () => {
       const stateBefore = { filter: "TODO_ALL", text: "" };
-      const actual = reducer(stateBefore, setFilter('TODO_ACTIVE'));
+      const actual = todoReducer(stateBefore, setFilter('TODO_ACTIVE'));
       const expectedResult = {
         filter: "TODO_ACTIVE",
         text: ""
@@ -52,7 +52,7 @@ describe('Todo state', () => {
     it('should handle SET_TEXT', () => {
       const stateBefore = { filter: "TODO_ALL", text: "" }
       const text = "Hello";
-      const actual = reducer(stateBefore, setText(text));
+      const actual = todoReducer(stateBefore, setText(text));
       const expectedResult = {
         filter: "TODO_ALL",
         text: "Hello"
