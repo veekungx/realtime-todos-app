@@ -11,7 +11,7 @@ import TodoSubscription from './Todo.subscription.gql';
 
 const mapState = (state) => ({
   filter: get(state, 'todo.filter'),
-  text: get(state, 'todo.text'),
+  search: get(state, 'todo.search'),
 });
 
 export default compose(
