@@ -21,12 +21,7 @@ const {
     mutateAndGetPayload: async ({ title, clientMutationId }, context) => {
       const newTodo = new TodoModel({ title, state: "TODO_ACTIVE" });
       await newTodo.save();
-      pubsub.publish('Todo', {
-        Todo: {
-          mutation: 'CREATED',
-          node: newTodo
-        }
-      })
+      pubsub.publish('todoAdded', { todoAdded: newTodo })
       return {
         todo: newTodo,
         edge: {
