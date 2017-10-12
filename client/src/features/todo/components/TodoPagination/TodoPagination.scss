@@ -1,0 +1,27 @@
+@import "../../../../stylesheets/_variables.scss";
+@import "../../../../stylesheets/_responsive.scss";
+.TodoPagination {
+  height: 56px;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  align-content: center;
+  &__label {
+    color: $colorText;
+    font-size: $fontSizeSmall;
+  }
+  &__buttonGroup {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+  }
+  &__space {
+    flex: 1;
+  }
+  button {
+    color: $colorText;
+    background: none;
+    border: none;
+    font-size: $fontSizeSmall;
+    margin: 0 10px;
+  }
+}
