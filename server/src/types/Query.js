@@ -14,6 +14,7 @@ const QuerySchema = `
     fortune : String
     todos(
       state: TodoState = TODO_ALL
+      search: String = ""
       first: Int
       last: Int
       after: String
@@ -32,20 +33,26 @@ const QueryResolver = {
       return fortune;
     },
     todos: async (root, args) => {
-      const { state } = args;
+      const { state, search } = args;
       let todos
       switch (state) {
         case "TODO_ALL":
-          todos = await TodoModel.find();
+          todos = await TodoModel.find({ title: { $regex: search } });
           break;
         case "TODO_ACTIVE":
-          todos = await TodoModel.find({ state: "TODO_ACTIVE" });
+          todos = await TodoModel.find({
+            title: { $regex: search },
+            state: "TODO_ACTIVE",
+          });
           break;
         case "TODO_COMPLETED":
-          todos = await TodoModel.find({ state: "TODO_COMPLETED" });
+          todos = await TodoModel.find({
+            title: { $regex: search },
+            state: "TODO_COMPLETED",
+          });
           break;
         default:
-          todos = await TodoModel.find();
+          todos = await TodoModel.find({ title: { $regex: search } });
           break;
       }
 
