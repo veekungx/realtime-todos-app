@@ -4,6 +4,48 @@ import { propType } from 'graphql-anywhere';
 import './TodoList.scss';
 import TodoItem from '../TodoItem/TodoItem';
 import TodoListFragment from './TodoList.fragment.gql';
+
+import { TransitionMotion, spring, presets } from 'react-motion';
+
+const getDefaultStyles = (todos) => {
+  return todos.edges.map(({ node }) => ({
+    key: node.id,
+    data: node,
+    style:
+    {
+      height: 0,
+      opacity: 1
+    }
+  }));
+};
+
+const getStyles = (todos) => {
+  return todos.edges.map(({ node }, i) => {
+    return {
+      key: node.id,
+      data: node,
+      style: {
+        height: spring(60, presets.gentle),
+        opacity: spring(1, presets.gentle),
+      }
+    };
+  });
+};
+
+const willEnter = () => {
+  return {
+    height: 0,
+    opacity: 1,
+  };
+};
+
+const willLeave = () => {
+  return {
+    height: spring(0),
+    opacity: spring(0),
+  };
+};
+
 const TodoList = (
   {
     // props
@@ -21,16 +63,35 @@ const TodoList = (
     );
   }
   return (
-    <div className="TodoList">
-      {todos.edges.map(({ node }) =>
-        <TodoItem
-          key={node.id}
-          todo={node}
-          onToggleTodo={onToggleTodo}
-          onDeleteTodo={onDeleteTodo}
-        />)
+    <TransitionMotion
+      defaultStyles={getDefaultStyles(todos)}
+      styles={getStyles(todos)}
+      willLeave={willLeave}
+      willEnter={willEnter}
+    >
+      {styles =>
+        <div className="TodoList">
+          {styles.map(style =>
+            <TodoItem
+              style={style.style}
+              key={style.data.id}
+              todo={style.data}
+              onToggleTodo={onToggleTodo}
+              onDeleteTodo={onDeleteTodo}
+            />
+          )}
+          {/* {todos.edges.map(({ node }) =>
+            <TodoItem
+              key={node.id}
+              todo={node}
+              onToggleTodo={onToggleTodo}
+              onDeleteTodo={onDeleteTodo}
+            />)
+          } */}
+        </div>
       }
-    </div>
+    </TransitionMotion>
+
   );
 }
 
@@ -53,14 +114,3 @@ TodoList.defaultProps = {
 };
 
 export default TodoList;
-
-// const queryOptions = {
-//   props({ data: { loading, error, todos } }) {
-//     if (loading) return { loading };
-//     if (error) return { error };
-//     return { todos };
-//   }
-// }
-
-// export const TodoListWithData = graphql(TODO_LIST_QUERY, queryOptions)(TodoList);
-

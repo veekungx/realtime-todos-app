@@ -37,6 +37,7 @@
     "react-apollo": "^1.4.16",
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.0.0",
+    "react-motion": "^0.5.2",
     "react-redux": "^5.0.6",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
