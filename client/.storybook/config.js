@@ -1,6 +1,6 @@
 import { configure, addDecorator } from '@storybook/react';
 import apolloStorybookDecorator from 'apollo-storybook-decorator';
-import typeDefs from '../src/typeDefs';
+import typeDefs from './typeDefs';
 
 addDecorator(
   apolloStorybookDecorator({ typeDefs, mocks: {} })
