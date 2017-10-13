@@ -52,4 +52,9 @@ http://todomvc.com/examples/react/
 - **[PROGRESS]** Pagination
 - **[BUG]** Fortune telling when you are working on todos app
 
+#### Test
+<img src="https://todos-server.now.sh/public/test.png" width="100%">
+
+#### Coverage
+<img src="https://todos-server.now.sh/public/coverage.png" width="100%">
 
