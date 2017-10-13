@@ -37,22 +37,24 @@ const QueryResolver = {
       let todos
       switch (state) {
         case "TODO_ALL":
-          todos = await TodoModel.find({ title: { $regex: search } });
+          todos = await TodoModel.find({
+            title: { $regex: search, $options: 'i' },
+          }, null, { sort: { createdAt: -1 } });
           break;
         case "TODO_ACTIVE":
           todos = await TodoModel.find({
-            title: { $regex: search },
+            title: { $regex: search, $options: 'i' },
             state: "TODO_ACTIVE",
           });
           break;
         case "TODO_COMPLETED":
           todos = await TodoModel.find({
-            title: { $regex: search },
+            title: { $regex: search, $options: 'i' },
             state: "TODO_COMPLETED",
           });
           break;
         default:
-          todos = await TodoModel.find({ title: { $regex: search } });
+          todos = await TodoModel.find({ title: { $regex: search, $options: 'i' } });
           break;
       }
 

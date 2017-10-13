@@ -19,7 +19,7 @@ const {
       edge: TodoEdge
     `,
     mutateAndGetPayload: async ({ title, clientMutationId }, context) => {
-      const newTodo = new TodoModel({ title, state: "TODO_ACTIVE" });
+      const newTodo = new TodoModel({ title, state: "TODO_ACTIVE", createdAt: new Date() });
       await newTodo.save();
       pubsub.publish('Todo', {
         Todo: {

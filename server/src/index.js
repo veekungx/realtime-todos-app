@@ -17,7 +17,11 @@ const env = process.env.NODE_ENV;
 mongoose.Promise = global.Promise;
 
 if (env !== 'test') {
-  mongoose.connect('mongodb://localhost/test', {
+  // mongoose.connect('mongodb://localhost/test', {
+  //   useMongoClient: true,
+  //   promiseLibrary: global.Promise
+  // });
+  mongoose.connect('mongodb://veekungx:Ti030928@ds119395.mlab.com:19395/realtime-todos', {
     useMongoClient: true,
     promiseLibrary: global.Promise
   });

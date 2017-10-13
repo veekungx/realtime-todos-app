@@ -21,7 +21,10 @@ const TodoItem =
           className="TodoItem__toggleButton"
           onClick={() => onToggleTodo(todo)}
         />
-        <div className="TodoItem__title">{todo.title}</div>
+        <div className={classnames("TodoItem__title", { "TodoItem__title--adding": todo.id === -1 })}>
+          {todo.title}
+          {todo.id === -1 && <span className="TodoItem__status" >Creating</span>}
+        </div>
         <button
           className="TodoItem__deleteButton"
           onClick={() => onDeleteTodo(todo)}

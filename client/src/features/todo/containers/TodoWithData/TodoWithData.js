@@ -11,7 +11,7 @@ import TodoSubscription from './Todo.subscription.gql';
 
 const mapState = (state) => ({
   filter: get(state, 'todo.filter'),
-  text: get(state, 'todo.text'),
+  search: get(state, 'todo.search'),
 });
 
 export default compose(
@@ -21,9 +21,10 @@ export default compose(
       return {
         variables: {
           state: props.filter,
-          search: props.search
+          search: props.search || ""
         },
         fetchPolicy: 'cache-and-network'
+        // fetchPolicy: 'network-only'
       }
     }
   }),
@@ -31,21 +32,95 @@ export default compose(
   graphql(RemoveTodoMutation, { name: 'removeTodo' }),
   withHandlers({
     onDeleteTodo: props => todo => {
-      const { id, title, state } = todo;
       props.removeTodo({
-        variables: { input: { id } },
+        variables: { input: { id: todo.id } },
+        update: (store, { data: { removeTodo: { todo: { id } } } }) => {
+          const data = store.readQuery({
+            query: TodoWithDataQuery,
+            variables: {
+              state: props.filter,
+              search: props.search
+            }
+          });
+          data.todos.edges = data.todos.edges.filter(({ node }) => node.id !== id);
+          store.writeQuery({
+            query: TodoWithDataQuery,
+            variables: {
+              state: props.filter,
+              search: props.search
+            },
+            data
+          });
+        },
+        optimisticResponse: {
+          removeTodo: {
+            __typename: "RemoveTodoPayload",
+            todo: {
+              __typename: "Todo",
+              ...todo
+            },
+            edge: {
+              __typename: "TodoEdge",
+              node: {
+                __typename: "Todo",
+                ...todo
+
+              }
+            }
+          }
+        }
       })
     },
     onToggleTodo: props => todo => {
       const { id } = todo;
       props.toggleTodo({
-        variables: { input: { id } }
+        variables: { input: { id } },
+        update: (store, { data: { removeTodo: { edge, todo } } }) => {
+          const data = store.readQuery({
+            query: TodoWithDataQuery,
+            variables: {
+              state: props.filter,
+              search: props.search
+            }
+          });
+          const index = data.todos.edges.findIndex(({ node }) => node.id == todo.id)
+          let optTodo = data.todos.edges[index];
+          optTodo.node.state = optTodo.node.state === "TODO_ACTIVE"
+            ? "TODO_COMPLETED"
+            : "TODO_ACTIVE"
+
+          data.todos.edges[index] = optTodo;
+          store.writeQuery({
+            query: TodoWithDataQuery,
+            variables: {
+              state: props.filter,
+              search: props.search
+            },
+            data
+          });
+        },
+        optimisticResponse: {
+          removeTodo: {
+            __typename: "ToggleTodoPayload",
+            todo: {
+              __typename: "Todo",
+              ...todo
+            },
+            edge: {
+              __typename: "TodoEdge",
+              node: {
+                __typename: "Todo",
+                ...todo
+              }
+            }
+          }
+        }
       })
     }
   }),
   lifecycle({
     componentDidMount() {
-      const { subscribeToMore } = this.props.data;
+      const { data: { subscribeToMore } } = this.props;
       subscribeToMore({
         document: TodoSubscription,
         updateQuery: (previous, { subscriptionData }) => {
@@ -53,15 +128,18 @@ export default compose(
           switch (subscriptionData.data.Todo.mutation) {
             case "CREATED":
               subTodo = subscriptionData.data.Todo.edge
-              return {
-                ...previous,
-                todos: {
-                  edges: [
-                    ...previous.todos.edges,
-                    subTodo,
-                  ]
+              if (this.props.filter !== "TODO_COMPLETED") {
+                return {
+                  ...previous,
+                  todos: {
+                    edges: [
+                      subTodo,
+                      ...previous.todos.edges,
+                    ]
+                  }
                 }
               }
+              return previous;
             case "DELETED":
               subTodo = subscriptionData.data.Todo.node;
               return {
@@ -70,11 +148,14 @@ export default compose(
                   edges: previous.todos.edges.filter(({ node }) => node.id !== subTodo.id)
                 }
               }
+            case "UPDATED":
+              //TODO
+              // handle filter case on todo
             default:
-              return;
+              return previous;
           }
         }
       })
     }
   })
-)(Todo);
+)(Todo)
