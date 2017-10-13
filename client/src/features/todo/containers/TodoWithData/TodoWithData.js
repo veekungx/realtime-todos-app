@@ -23,7 +23,7 @@ export default compose(
           state: props.filter,
           search: props.search
         },
-        fetchPolicy: 'cache-and-network'
+        fetchPolicy: 'network-only'
       }
     }
   }),
@@ -45,34 +45,11 @@ export default compose(
   }),
   lifecycle({
     componentDidMount() {
-      const { subscribeToMore } = this.props.data;
+      const { data: { subscribeToMore } } = this.props;
       subscribeToMore({
         document: TodoSubscription,
         updateQuery: (previous, { subscriptionData }) => {
-          let subTodo;
-          switch (subscriptionData.data.Todo.mutation) {
-            case "CREATED":
-              subTodo = subscriptionData.data.Todo.edge
-              return {
-                ...previous,
-                todos: {
-                  edges: [
-                    subTodo,
-                    ...previous.todos.edges,
-                  ]
-                }
-              }
-            case "DELETED":
-              subTodo = subscriptionData.data.Todo.node;
-              return {
-                ...previous,
-                todos: {
-                  edges: previous.todos.edges.filter(({ node }) => node.id !== subTodo.id)
-                }
-              }
-            default:
-              return;
-          }
+          this.props.data.refetch();
         }
       })
     }
