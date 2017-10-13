@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { withHandlers, withState, compose } from 'recompose';
+import { withHandlers, compose } from 'recompose';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 
