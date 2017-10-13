@@ -21,17 +21,17 @@ export const setText = (text) => ({ type: SET_TEXT, text });
 export const setSearch = (text) => ({ type: SET_SEARCH, text });
 
 // epic
-export const setTextEpic = (action$) =>
+export const setSearchEpic = (action$, store, deps) =>
   action$
     .ofType(SET_TEXT)
-    .debounceTime(500)
+    .debounceTime(500, deps.scheduler)
     .distinctUntilChanged()
     .map((action) => ({
       type: SET_SEARCH,
       text: action.text
     }))
 
-export const todoEpic = combineEpics(setTextEpic);
+export const todoEpic = combineEpics(setSearchEpic);
 
 export const todoReducer = (state = initialState, action = {}) => {
   switch (action.type) {

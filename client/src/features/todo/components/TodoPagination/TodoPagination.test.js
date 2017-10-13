@@ -15,7 +15,11 @@ describe('TodoPagination', () => {
       const handler = jest.fn();
       const wrapper = shallow(<TodoPagination onPerPage={handler} />);
       wrapper.find('.TodoPagination__perPageButton').at(0).simulate('click');
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith(5);
+      wrapper.find('.TodoPagination__perPageButton').at(1).simulate('click');
+      expect(handler).toHaveBeenCalledWith(10);
+      wrapper.find('.TodoPagination__perPageButton').at(2).simulate('click');
+      expect(handler).toHaveBeenCalledWith(25);
     })
 
     it('should handle onPrevPage', () => {

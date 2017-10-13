@@ -7,44 +7,39 @@ import TodoListFragment from './TodoList.fragment.gql';
 
 import { TransitionMotion, spring, presets } from 'react-motion';
 
-const getDefaultStyles = (todos) => {
-  return todos.edges.map(({ node }) => ({
-    key: node.id,
-    data: node,
-    style:
-    {
-      height: 0,
-      opacity: 1
-    }
-  }));
-};
+const getDefaultStyles = (todos) =>
+  todos.edges.map(({ node }) =>
+    ({
+      key: node.id,
+      data: node,
+      style: {
+        height: 0,
+        opacity: 1
+      }
+    })
+  );
 
-const getStyles = (todos) => {
-  return todos.edges.map(({ node }, i) => {
-    return {
+const getStyles = (todos) =>
+  todos.edges.map(({ node }, i) =>
+    ({
       key: node.id,
       data: node,
       style: {
         height: spring(60, presets.gentle),
         opacity: spring(1, presets.gentle),
       }
-    };
-  });
-};
+    })
+  );
 
-const willEnter = () => {
-  return {
-    height: 0,
-    opacity: 1,
-  };
-};
+const willEnter = () => ({
+  height: 0,
+  opacity: 1,
+})
 
-const willLeave = () => {
-  return {
-    height: spring(0),
-    opacity: spring(0),
-  };
-};
+const willLeave = () => ({
+  height: spring(0),
+  opacity: spring(0),
+});
 
 const TodoList = (
   {

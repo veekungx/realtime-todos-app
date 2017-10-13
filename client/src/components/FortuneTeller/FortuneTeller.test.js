@@ -1,9 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import FortuneTeller from './FortuneTeller';
-
+import Snackbar from 'material-ui/Snackbar';
 describe('FortuneTeller', () => {
-
+  describe('Components', () => {
+    it('should have Snackbar', () => {
+      const wrapper = shallow(<FortuneTeller />);
+      expect(wrapper.find(Snackbar).exists()).toEqual(true);
+    });
+  });
   describe('Props', () => {
     it('should pass isOpen prop to Snackbar', () => {
       const wrapper = shallow(<FortuneTeller isOpen={true} />);
