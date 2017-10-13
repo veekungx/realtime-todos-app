@@ -1,18 +1,29 @@
-import {
-  todoReducer,
+import 'rxjs/add/operator/toArray';
+import { VirtualTimeScheduler } from 'rxjs/scheduler/VirtualTimeScheduler';
+import { createEpicMiddleware, ActionsObservable } from 'redux-observable';
+import configureMockStore from 'redux-mock-store';
 
-  //const
+import {
+  // reducer
+  todoReducer,
+  // epics
+  todoEpic,
+  setSearchEpic,
+  // const
   SET_FILTER,
   SET_TEXT,
   SET_SEARCH,
-
-  //actions
+  // actions
   setFilter,
   setText,
   setSearch,
 
 } from './reducer';
+
+
+
 describe('Todo state', () => {
+
   describe('Actions', () => {
     it('should create an action to set filter', () => {
       const filter = "TODO_ALL";
@@ -44,6 +55,7 @@ describe('Todo state', () => {
       expect(actual).toEqual(expectedResult);
     });
   });
+
   describe('Reducer', () => {
     it('should return initial state', () => {
       const expectedResult = {
@@ -86,6 +98,27 @@ describe('Todo state', () => {
         text: "",
       }
       expect(actual).toEqual(expectedResult);
+    });
+  });
+
+  describe('Epics', () => {
+    it('should perform SET_SEARCH action', () => {
+      const scheduler = new VirtualTimeScheduler();
+      const epicMiddleware = createEpicMiddleware(todoEpic, {
+        dependencies: {
+          scheduler
+        }
+      });
+      const mockStore = configureMockStore([epicMiddleware]);
+      const store = mockStore();
+
+      store.dispatch(setText('hello'));
+      scheduler.flush();
+
+      expect(store.getActions()).toEqual([
+        { type: SET_TEXT, text: 'hello' },
+        { type: SET_SEARCH, text: 'hello' }
+      ]);
     });
   });
 });
