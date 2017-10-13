@@ -4,10 +4,12 @@ import {
   //const
   SET_FILTER,
   SET_TEXT,
+  SET_SEARCH,
 
   //actions
   setFilter,
   setText,
+  setSearch,
 
 } from './reducer';
 describe('Todo state', () => {
@@ -29,7 +31,18 @@ describe('Todo state', () => {
         type: SET_TEXT,
         text
       }
+      expect(actual).toEqual(expectedResult);
     })
+
+    it('should create an action to set search', () => {
+      const text = 'hi';
+      const actual = setSearch(text);
+      const expectedResult = {
+        type: SET_SEARCH,
+        text,
+      }
+      expect(actual).toEqual(expectedResult);
+    });
   });
   describe('Reducer', () => {
     it('should return initial state', () => {
@@ -42,21 +55,35 @@ describe('Todo state', () => {
       expect(actual).toEqual(expectedResult);
     });
     it('should handle SET_FILTER', () => {
-      const stateBefore = { filter: "TODO_ALL", text: "" };
+      const stateBefore = { filter: "TODO_ALL", text: "", search: "" };
       const actual = todoReducer(stateBefore, setFilter('TODO_ACTIVE'));
       const expectedResult = {
         filter: "TODO_ACTIVE",
-        text: ""
+        text: "",
+        search: ""
       };
       expect(actual).toEqual(expectedResult);
     });
     it('should handle SET_TEXT', () => {
-      const stateBefore = { filter: "TODO_ALL", text: "" }
+      const stateBefore = { filter: "TODO_ALL", text: "", search: "" }
       const text = "Hello";
       const actual = todoReducer(stateBefore, setText(text));
       const expectedResult = {
         filter: "TODO_ALL",
-        text: "Hello"
+        text: "Hello",
+        search: ""
+      }
+      expect(actual).toEqual(expectedResult);
+    });
+
+    it('should handle SET_SEARCH', () => {
+      const stateBefore = { filter: "TODO_ALL", text: "", search: "" }
+      const text = "Hello";
+      const actual = todoReducer(stateBefore, setSearch(text));
+      const expectedResult = {
+        filter: "TODO_ALL",
+        search: "Hello",
+        text: "",
       }
       expect(actual).toEqual(expectedResult);
     });
