@@ -19,9 +19,20 @@ Basic features
 <img src="https://todos-server.now.sh/public/AddTodo.gif" width="200">
 
 - [DONE] Delete todos
-- [DONE] Count todos
+
+<img src="https://todos-server.now.sh/public/RemoveTodo.gif" width="200">
+
 - [DONE] Mark completed todos
+
+<img src="https://todos-server.now.sh/public/ToggleTodo.gif" width="200">
+
+
 - [DONE] Filter all todos, active todos, completed todos
+
+<img src="https://todos-server.now.sh/public/FilterTodo.gif" width="200">
+
+
+- [DONE] Count todos
 
 What's I'm going to extends
 - [DONE] Realtime todos application
