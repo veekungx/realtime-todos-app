@@ -6,7 +6,7 @@ Original example todos app link
 
 http://todomvc.com/examples/react/
 
-[Trello](https://trello.com/b/LcBgIGJt/real-time-todo-application) - Planning
+[Trello](https://trello.com/b/LcBgIGJtreal-time-todo-application) - Planning
 
 
 [Storybook](https://todos-storybook.now.sh) - The design of components
