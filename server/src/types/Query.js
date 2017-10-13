@@ -40,7 +40,7 @@ const QueryResolver = {
         case "TODO_ALL":
           todos = await TodoModel.find(
             {
-              title: { $regex: search, $options: 'i' },
+              title: { $regex: search.trim(), $options: 'i' },
             },
             null,
             { sort }
@@ -49,7 +49,7 @@ const QueryResolver = {
         case "TODO_ACTIVE":
           todos = await TodoModel.find(
             {
-              title: { $regex: search, $options: 'i' },
+              title: { $regex: search.trim(), $options: 'i' },
               state: "TODO_ACTIVE",
             },
             null,
@@ -59,7 +59,7 @@ const QueryResolver = {
         case "TODO_COMPLETED":
           todos = await TodoModel.find(
             {
-              title: { $regex: search, $options: 'i' },
+              title: { $regex: search.trim(), $options: 'i' },
               state: "TODO_COMPLETED",
             },
             null,
@@ -69,7 +69,7 @@ const QueryResolver = {
         default:
           todos = await TodoModel.find(
             {
-              title: { $regex: search, $options: 'i' }
+              title: { $regex: search.trim(), $options: 'i' }
             },
             null,
             { sort }

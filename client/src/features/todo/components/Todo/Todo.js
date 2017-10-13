@@ -24,7 +24,10 @@ const Todo =
         <div className="Todo__container">
           <TodoFooter counter={todos ? todos.edges.length : 0} />
           <TodoInput />
-          {loading && <LinearProgress />}
+          {loading
+            ? <LinearProgress />
+            : <LinearProgress color="white" mode="determinate" value={0} />
+          }
           <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
           {/* <TodoPagination
             hasNextPage
