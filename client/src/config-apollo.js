@@ -8,13 +8,14 @@ import {
   todoEpic
 } from './features/todo/reducer';
 
+const socketUri = process.env.REACT_APP_SOCKET_URI;
+const graphqlUri = process.env.REACT_APP_GRAPHQL_URI;
 const epicMiddleware = createEpicMiddleware(todoEpic);
-
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:4000/graphql',
+  uri: graphqlUri,
 })
 
-const wsClient = new SubscriptionClient('ws://localhost:4000/subscriptions', {
+const wsClient = new SubscriptionClient(`${socketUri}/subscriptions`, {
   reconnect: true,
 })
 
