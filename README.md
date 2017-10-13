@@ -7,11 +7,11 @@ http://todomvc.com/examples/react/
 
 [Trello](https://trello.com/b/LcBgIGJt/real-time-todo-application) - Planning
 
-[Demo](https://todos-client.now.sh) - Try it!!
-
 [Storybook](https://todos-storybook.now.sh) - The design of components
 
 [GraphQL api & document](https://todos-server.now.sh/graphiql?query=query%7B%0A%20%20todos%7B%0A%20%20%20%20totalCount%0A%20%20%20%20edges%7B%0A%20%20%20%20%20%20node%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20state%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D) - Better and modern than REST
+
+[Demo](https://todos-client.now.sh) - Try it!!
 
 Basic features
 - [DONE] Add new todos
