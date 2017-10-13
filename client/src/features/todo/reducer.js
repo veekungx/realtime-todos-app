@@ -4,6 +4,7 @@ import { combineEpics } from 'redux-observable';
 const initialState = {
   filter: "TODO_ALL",
   text: "",
+  search: "",
 };
 
 
@@ -21,7 +22,7 @@ export const setSearch = (text) => ({ type: SET_SEARCH, text });
 export const setTextEpic = (action$) =>
   action$
     .ofType(SET_TEXT)
-    .debounceTime(350)
+    .debounceTime(500)
     .map((action) => ({
       type: SET_SEARCH,
       text: action.text

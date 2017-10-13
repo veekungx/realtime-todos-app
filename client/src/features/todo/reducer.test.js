@@ -35,7 +35,8 @@ describe('Todo state', () => {
     it('should return initial state', () => {
       const expectedResult = {
         filter: "TODO_ALL",
-        text: ""
+        text: "",
+        search: "",
       };
       const actual = todoReducer(undefined);
       expect(actual).toEqual(expectedResult);
