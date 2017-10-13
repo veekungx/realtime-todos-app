@@ -24,7 +24,6 @@ export default compose(
           search: props.search || ""
         },
         fetchPolicy: 'cache-and-network'
-        // fetchPolicy: 'network-only'
       }
     }
   }),
@@ -83,7 +82,7 @@ export default compose(
               search: props.search
             }
           });
-          const index = data.todos.edges.findIndex(({ node }) => node.id == todo.id)
+          const index = data.todos.edges.findIndex(({ node }) => node.id === todo.id)
           let optTodo = data.todos.edges[index];
           optTodo.node.state = optTodo.node.state === "TODO_ACTIVE"
             ? "TODO_COMPLETED"
@@ -151,6 +150,7 @@ export default compose(
             case "UPDATED":
               //TODO
               // handle filter case on todo
+              break;
             default:
               return previous;
           }
