@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TodoFooter from './TodoFooter';
-import TodoFilterButton from '../TodoFilterButton/TodoFilterButton';
+
+import TodoFilterButtonWithConnect from '../../containers/TodoFilterButtonWithConnect/TodoFilterButtonWithConnect';
+import TodoClearButtonWithClearCompletedTodos from '../TodoCounter/TodoCounter';
 import TodoCounter from '../TodoCounter/TodoCounter';
 
 describe('TodoFooter', () => {
@@ -14,17 +16,20 @@ describe('TodoFooter', () => {
     });
   });
   describe('Components', () => {
-    it('should have TodoFilterButton and TodoCounter', () => {
+
+    it('should have filter button', () => {
       const wrapper = shallow(<TodoFooter />);
-      expect(wrapper.containsAllMatchingElements([
-        <TodoFilterButton />,
-        <TodoCounter />
-      ])).toEqual(true);
+      expect(wrapper.find(TodoFilterButtonWithConnect).exists()).toEqual(true);
     });
 
     it('should have clear all completed todo button', () => {
       const wrapper = shallow(<TodoFooter />);
-      expect(wrapper.find('.TodoFooter__clearButton').exists()).toEqual(true);
+      expect(wrapper.find(TodoClearButtonWithClearCompletedTodos).exists()).toEqual(true);
+    });
+
+    it('should have TodoCounter', () => {
+      const wrapper = shallow(<TodoFooter />);
+      expect(wrapper.find(TodoCounter).exists()).toEqual(true);
     });
 
   });
