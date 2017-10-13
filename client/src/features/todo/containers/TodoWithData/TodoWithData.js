@@ -75,6 +75,46 @@ export default compose(
       const { id } = todo;
       props.toggleTodo({
         variables: { input: { id } },
+        update: (store, { data: { removeTodo: { edge, todo } } }) => {
+          const data = store.readQuery({
+            query: TodoWithDataQuery,
+            variables: {
+              state: props.filter,
+              search: props.search
+            }
+          });
+          const index = data.todos.edges.findIndex(({ node }) => node.id == todo.id)
+          let optTodo = data.todos.edges[index];
+          optTodo.node.state = optTodo.node.state === "TODO_ACTIVE"
+            ? "TODO_COMPLETED"
+            : "TODO_ACTIVE"
+
+          data.todos.edges[index] = optTodo;
+          store.writeQuery({
+            query: TodoWithDataQuery,
+            variables: {
+              state: props.filter,
+              search: props.search
+            },
+            data
+          });
+        },
+        optimisticResponse: {
+          removeTodo: {
+            __typename: "ToggleTodoPayload",
+            todo: {
+              __typename: "Todo",
+              ...todo
+            },
+            edge: {
+              __typename: "TodoEdge",
+              node: {
+                __typename: "Todo",
+                ...todo
+              }
+            }
+          }
+        }
       })
     }
   }),
@@ -109,19 +149,8 @@ export default compose(
                 }
               }
             case "UPDATED":
-              subTodo = subscriptionData.data.Todo.node;
-              if (subTodo.state === "TODO_COMPLETED" && this.props.filter === "TODO_COMPLETED") {
-                return {
-                  ...previous,
-                  todos: {
-                    edges: [
-                      ...previous.todos.edges,
-                      subTodo,
-                    ]
-                  }
-                }
-              }
-              return previous;
+              //TODO
+              // handle filter case on todo
             default:
               return previous;
           }

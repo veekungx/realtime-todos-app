@@ -27,10 +27,10 @@ const Todo =
           <TodoInput />
           {loading && <LinearProgress />}
           <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
-          <TodoPagination
+          {/* <TodoPagination
             hasNextPage
             hasPrevPage
-          />
+          /> */}
         </div>
       </div>
     )
