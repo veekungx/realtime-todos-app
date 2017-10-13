@@ -13,6 +13,7 @@ const mocks = require('./mocks');
 const app = express();
 const PORT = 4000;
 
+const socketUri = process.env.SOCKET_URI || 'ws://localhost:4000';
 const env = process.env.NODE_ENV;
 mongoose.Promise = global.Promise;
 
@@ -33,6 +34,7 @@ mongoose.connection.once('open', function () {
 });
 
 app.use(cors());
+app.use('/public', express.static('public'));
 app.get('/status', (req, res) => res.send('OK'));
 app.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
@@ -42,14 +44,14 @@ app.use('/graphql', bodyParser.json(), graphqlExpress({
 }));
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: 'ws://localhost:4000/subscriptions'
+  subscriptionsEndpoint: `${socketUri}/subscriptions`
 }));
 
 const server = createServer(app);
 server.listen(PORT, () => {
   SubscriptionServer.create(
     { execute, subscribe, schema },
-    { server, path: '/subscriptions' },
+    { server, path: `/subscriptions` },
   );
   console.log('Server start on port:' + PORT)
 });
