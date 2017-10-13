@@ -36,6 +36,11 @@ describe('TodoItem', () => {
       const wrapper = shallow(<TodoItem todo={todo} />);
       expect(wrapper.find('.TodoItem__title').text()).toEqual('Hello World');
     });
+    it('should render creating text when todo id === -1', () => {
+      const todo = generateMockTodo({ id: -1, title: 'Hello' });
+      const wrapper = shallow(<TodoItem todo={todo} />);
+      expect(wrapper.find('.TodoItem__status').exists()).toEqual(true);
+    });
   });
 
   describe('Events', () => {
