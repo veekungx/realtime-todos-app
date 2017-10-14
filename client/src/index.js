@@ -12,5 +12,6 @@ ReactDOM.render(
   <ApolloProvider store={store} client={client} >
     <App />
   </ApolloProvider>
-  , document.getElementById('root'));
+  , document.getElementById('root'),
+);
 registerServiceWorker();

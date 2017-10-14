@@ -9,17 +9,17 @@ const buildStory = (attrs) => {
     title: 'Hello World',
     updatedAt: Date.now(),
     ...attrs,
-  }
+  };
 
   const props = {
-    todo
-  }
+    todo,
+  };
 
   const handlers = {
     onToggleTodo: action('onToggleTodo'),
-  }
+  };
 
-  return <TodoItem {...props} {...handlers} />
+  return <TodoItem {...props} {...handlers} />;
 };
 
 storiesOf('TodoItem', module)

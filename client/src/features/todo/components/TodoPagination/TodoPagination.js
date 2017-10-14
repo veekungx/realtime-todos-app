@@ -1,17 +1,16 @@
 import React from 'react';
-import { } from 'prop-types';
+import { func } from 'prop-types';
 
 import './TodoPagination.scss';
 
 const TodoPagination =
   ({
-    // props
-
     // events
     onPrevPage,
     onPerPage,
-    onNextPage
-  }) => (
+    onNextPage,
+  }) =>
+    (
       <div className="TodoPagination">
         <div className="TodoPagination__buttonGroup">
           <div
@@ -56,6 +55,14 @@ const TodoPagination =
       </div>
     );
 
-TodoPagination.propTypes = {};
-TodoPagination.defaultProps = {};
+TodoPagination.propTypes = {
+  onPrevPage: func,
+  onPerPage: func,
+  onNextPage: func,
+};
+TodoPagination.defaultProps = {
+  onPrevPage: undefined,
+  onPerPage: undefined,
+  onNextPage: undefined,
+};
 export default TodoPagination;

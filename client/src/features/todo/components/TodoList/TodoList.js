@@ -1,59 +1,55 @@
 import React from 'react';
-import { bool, func, instanceOf } from 'prop-types';
+import { func } from 'prop-types';
 import { propType } from 'graphql-anywhere';
+import { TransitionMotion, spring, presets } from 'react-motion';
+
 import './TodoList.scss';
 import TodoItem from '../TodoItem/TodoItem';
 import TodoListFragment from './TodoList.fragment.gql';
 
-import { TransitionMotion, spring, presets } from 'react-motion';
-
-const getDefaultStyles = (todos) =>
+const getDefaultStyles = todos =>
   todos.edges.map(({ node }) =>
     ({
       key: node.id,
       data: node,
       style: {
         height: 0,
-        opacity: 1
-      }
-    })
-  );
+        opacity: 1,
+      },
+    }));
 
-const getStyles = (todos) =>
-  todos.edges.map(({ node }, i) =>
+const getStyles = todos =>
+  todos.edges.map(({ node }) =>
     ({
       key: node.id,
       data: node,
       style: {
         height: spring(60, presets.gentle),
         opacity: spring(1, presets.gentle),
-      }
-    })
-  );
+      },
+    }));
 
 const willEnter = () => ({
   height: 0,
   opacity: 1,
-})
+});
 
 const willLeave = () => ({
   height: spring(0),
   opacity: spring(0),
 });
 
-const TodoList = (
-  {
-    // props
-    todos,
-    // events
-    onToggleTodo,
-    onDeleteTodo,
-  }
-) => {
+const TodoList = ({
+  // props
+  todos,
+  // events
+  onToggleTodo,
+  onDeleteTodo,
+}) => {
   if (!todos.edges.length) {
     return (
       <div className="TodoList__noData">
-        You don't have any item on todo list. Try to add one.
+        {"You don't have any item on todo list. Try to add one."}
       </div>
     );
   }
@@ -65,36 +61,34 @@ const TodoList = (
       willEnter={willEnter}
     >
       {styles =>
-        <div className="TodoList">
-          {styles.map(style =>
-            <TodoItem
-              style={style.style}
-              key={style.data.id}
-              todo={style.data}
-              onToggleTodo={onToggleTodo}
-              onDeleteTodo={onDeleteTodo}
-            />
-          )}
-        </div>
+        (
+          <div className="TodoList">
+            {styles.map(style =>
+              (<TodoItem
+                style={style.style}
+                key={style.data.id}
+                todo={style.data}
+                onToggleTodo={onToggleTodo}
+                onDeleteTodo={onDeleteTodo}
+              />
+              ))}
+          </div>
+        )
       }
     </TransitionMotion>
 
   );
-}
+};
 
 TodoList.propTypes = {
-  loading: bool,
-  error: instanceOf(Error),
-  todos: propType(TodoListFragment).isRequired,
+  todos: propType(TodoListFragment),
   onDeleteTodo: func,
   onToggleTodo: func,
 };
 
 TodoList.defaultProps = {
-  loading: false,
-  error: undefined,
   todos: {
-    edges: []
+    edges: [],
   },
   onDeleteTodo: undefined,
   onToggleTodo: undefined,

@@ -1,13 +1,14 @@
 import React from 'react';
-import { } from 'prop-types';
+import { func } from 'prop-types';
 
 import './TodoClearButton.scss';
 
 const TodoClearButton =
   ({
     // events
-    onClear
-  }) => (
+    onClear,
+  }) =>
+    (
       <button
         className="TodoClearButton"
         onClick={onClear}
@@ -16,6 +17,10 @@ const TodoClearButton =
       </button>
     );
 
-TodoClearButton.propTypes = {};
-TodoClearButton.defaultProps = {};
+TodoClearButton.propTypes = {
+  onClear: func,
+};
+TodoClearButton.defaultProps = {
+  onClear: undefined,
+};
 export default TodoClearButton;

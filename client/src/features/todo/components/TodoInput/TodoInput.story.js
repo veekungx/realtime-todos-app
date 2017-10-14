@@ -5,13 +5,13 @@ import TodoInput from './TodoInput';
 
 
 const props = {
-  text: "",
-}
+  text: '',
+};
 
 const events = {
   onChangeText: action('onChangeText'),
   onCompleteAll: action('onCompleteAll'),
-}
+};
 
 storiesOf('TodoInput', module)
   .add('default', () => <TodoInput {...props} {...events} />)

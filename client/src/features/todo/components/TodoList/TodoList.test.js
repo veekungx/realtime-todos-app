@@ -4,12 +4,10 @@ import TodoList from './TodoList';
 import { generateMockNodeTodo } from '../../../../helpers/generateMockTodo';
 
 describe('TodoList', () => {
-
   describe('Props', () => {
-
     it('should render empty todos', () => {
       const todos = {
-        edges: []
+        edges: [],
       };
       const wrapper = shallow(<TodoList todos={todos} />);
       expect(wrapper.find('TodoItem').length).toEqual(0);
@@ -19,20 +17,20 @@ describe('TodoList', () => {
       const todos = undefined;
       const wrapper = shallow(<TodoList todos={todos} />);
       expect(wrapper.find('TodoItem').length).toEqual(0);
-    })
+    });
 
     it('should render infomation when zero todos', () => {
       const text = "You don't have any item on todo list";
       const wrapper = shallow(<TodoList />);
-      expect(wrapper.find('.TodoList__noData').text()).toContain(text)
+      expect(wrapper.find('.TodoList__noData').text()).toContain(text);
     });
 
     it('should render todos', () => {
       const todos = {
         edges: [
           generateMockNodeTodo(),
-          generateMockNodeTodo()
-        ]
+          generateMockNodeTodo(),
+        ],
       };
       const wrapper = shallow(<TodoList todos={todos} />).dive();
       expect(wrapper.find('TodoItem').length).toEqual(2);
@@ -41,13 +39,11 @@ describe('TodoList', () => {
     it('should pass todo to TodoItem', () => {
       const mockTodo = generateMockNodeTodo();
       const todos = {
-        edges: [mockTodo]
+        edges: [mockTodo],
       };
       const wrapper = shallow(<TodoList todos={todos} />).dive();
       expect(wrapper.find('TodoItem').at(0).props().todo).toEqual(mockTodo.node);
     });
-
-
   });
 
   describe('Events', () => {
@@ -55,9 +51,9 @@ describe('TodoList', () => {
       const handler = jest.fn();
       const mockTodo = generateMockNodeTodo();
       const todos = {
-        edges: [mockTodo]
+        edges: [mockTodo],
       };
-      const wrapper = shallow(<TodoList todos={todos} onDeleteTodo={handler} />).dive()
+      const wrapper = shallow(<TodoList todos={todos} onDeleteTodo={handler} />).dive();
       wrapper.find('TodoItem').at(0).props().onDeleteTodo();
       expect(handler).toHaveBeenCalledWith();
     });
@@ -66,11 +62,11 @@ describe('TodoList', () => {
       const handler = jest.fn();
       const mockTodo = generateMockNodeTodo();
       const todos = {
-        edges: [mockTodo]
+        edges: [mockTodo],
       };
-      const wrapper = shallow(<TodoList todos={todos} onToggleTodo={handler} />).dive()
+      const wrapper = shallow(<TodoList todos={todos} onToggleTodo={handler} />).dive();
       wrapper.find('TodoItem').at(0).props().onToggleTodo();
       expect(handler).toHaveBeenCalledWith();
     });
-  })
+  });
 });

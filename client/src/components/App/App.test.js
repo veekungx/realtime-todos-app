@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
-import TodoWithData from '../../features/todo/containers/TodoWithData/TodoWithData'
-import FortuneTellerWithQuery from '../../containers/FortuneTellerWithQuery/FortuneTellerWithQuery'
+import TodoWithData from '../../features/todo/containers/TodoWithData/TodoWithData';
+import FortuneTellerWithQuery from '../../containers/FortuneTellerWithQuery/FortuneTellerWithQuery';
 
 describe('App', () => {
   describe('Components', () => {

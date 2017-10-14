@@ -5,15 +5,6 @@ import TodoInput from '../TodoInput/TodoInput';
 import TodoList from '../../components/TodoList/TodoList';
 import TodoFooter from '../TodoFooter/TodoFooter';
 
-
-const mockData = {
-  data: {
-    todos: {
-      edges: []
-    }
-  }
-};
-
 describe('Todo', () => {
   it('should contains TodoList, TodoInput, TodoFooter', () => {
     const wrapper = shallow(<Todo />);

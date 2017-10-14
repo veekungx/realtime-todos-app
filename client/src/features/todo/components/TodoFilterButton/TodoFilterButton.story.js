@@ -6,14 +6,14 @@ import TodoFilterButton from './TodoFilterButton';
 const buildStory = (attrs) => {
   const props = {
     label: 'Hello',
-    ...attrs
-  }
+    ...attrs,
+  };
 
   const handlers = {
     onSelect: action('onSelect'),
-  }
+  };
 
-  return <TodoFilterButton {...props} {...handlers} />
+  return <TodoFilterButton {...props} {...handlers} />;
 };
 
 storiesOf('TodoFilterButton', module)
