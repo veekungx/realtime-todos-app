@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, bool, instanceOf } from 'prop-types';
+import { func, bool, instanceOf, shape } from 'prop-types';
 import { propType } from 'graphql-anywhere';
 import { LinearProgress } from 'material-ui/Progress';
 
@@ -45,16 +45,16 @@ const Todo =
     );
   };
 
-console.log(TodoWithDataQuery);
 Todo.propTypes = {
-  data: {
+  data: shape({
     loading: bool,
     error: instanceOf(Error),
-    todos: propType(TodoWithDataQuery).isRequired,
-  },
+    todos: propType(TodoWithDataQuery),
+  }),
   onDeleteTodo: func,
   onToggleTodo: func,
 };
+
 Todo.defaultProps = {
   data: {
     loading: false,
