@@ -1,5 +1,5 @@
 import React from 'react';
-import { number, func } from 'prop-types';
+import { number } from 'prop-types';
 
 import './TodoFooter.scss';
 import TodoCounter from '../TodoCounter/TodoCounter';
@@ -10,10 +10,9 @@ const TodoFooter =
   ({
     // props
     counter,
-    // events
-    onClear
-  }) => (
-      <div className='TodoFooter'>
+  }) =>
+    (
+      <div className="TodoFooter">
         <div className="TodoFooter__section">
           <TodoCounter counter={counter} />
         </div>
@@ -30,10 +29,8 @@ const TodoFooter =
 
 TodoFooter.propTypes = {
   counter: number,
-  onClear: func
 };
 TodoFooter.defaultProps = {
   counter: 0,
-  onClear: undefined
 };
 export default TodoFooter;

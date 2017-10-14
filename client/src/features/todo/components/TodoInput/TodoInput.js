@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { bool, func } from 'prop-types';
 import classnames from 'classnames';
 import './TodoInput.scss';
 
@@ -11,7 +11,8 @@ const TodoInput =
     isCompleteAll,
     // events
     onCompleteAll,
-  }) => (
+  }) =>
+    (
       <div className={classnames('TodoInput', { 'TodoInput--completeAll': isCompleteAll })}>
         <button
           className="TodoInput__completeAllButton"
@@ -22,13 +23,11 @@ const TodoInput =
     );
 
 TodoInput.propTypes = {
-  value: string,
-  onChangeText: func,
+  isCompleteAll: bool,
   onCompleteAll: func,
 };
 TodoInput.defaultProps = {
-  value: '',
-  onChangeText: undefined,
+  isCompleteAll: false,
   onCompleteAll: undefined,
 };
 export default TodoInput;

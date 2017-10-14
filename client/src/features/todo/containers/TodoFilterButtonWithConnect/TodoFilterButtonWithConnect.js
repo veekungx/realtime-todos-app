@@ -1,21 +1,16 @@
 import get from 'lodash/get';
-import TodoFilterButton from '../../components/TodoFilterButton/TodoFilterButton';
-import { setFilter } from '../../reducer';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 
-const mapState = (state, ownProps) => {
-  return {
-    isSelected: get(state, 'todo.filter') === ownProps.filter
-  }
-};
+import TodoFilterButton from '../../components/TodoFilterButton/TodoFilterButton';
+import { setFilter } from '../../reducer';
 
-const mapDispatch = (dispatch) => {
-  return {
-    onSelect: (filter) => dispatch(setFilter(filter)),
-  }
-};
+const mapState = (state, ownProps) => ({
+  isSelected: get(state, 'todo.filter') === ownProps.filter,
+});
 
-export default compose(
-  connect(mapState, mapDispatch),
-)(TodoFilterButton);
+const mapDispatch = dispatch => ({
+  onSelect: filter => dispatch(setFilter(filter)),
+});
+
+export default compose(connect(mapState, mapDispatch))(TodoFilterButton);

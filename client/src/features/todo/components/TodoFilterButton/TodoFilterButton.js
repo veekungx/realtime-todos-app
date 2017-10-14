@@ -1,5 +1,5 @@
 import React from 'react';
-import { } from 'prop-types';
+import { string, bool, func, node } from 'prop-types';
 import classnames from 'classnames';
 
 import './TodoFilterButton.scss';
@@ -12,8 +12,9 @@ const TodoFilterButton =
     isSelected,
     children,
     // events
-    onSelect
-  }) => (
+    onSelect,
+  }) =>
+    (
       <button
         className={classnames('TodoFilterButton', { 'TodoFilterButton--selected': isSelected })}
         onClick={() => onSelect(filter)}
@@ -22,6 +23,18 @@ const TodoFilterButton =
       </button>
     );
 
-TodoFilterButton.propTypes = {};
-TodoFilterButton.defaultProps = {};
+TodoFilterButton.propTypes = {
+  label: string,
+  filter: string,
+  isSelected: bool,
+  children: node,
+  onSelect: func,
+};
+TodoFilterButton.defaultProps = {
+  label: '',
+  filter: '',
+  isSelected: false,
+  children: null,
+  onSelect: undefined,
+};
 export default TodoFilterButton;

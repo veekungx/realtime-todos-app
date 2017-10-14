@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import TodoFooter from './TodoFooter';
 
 import TodoFilterButtonWithConnect from '../../containers/TodoFilterButtonWithConnect/TodoFilterButtonWithConnect';
-import TodoClearButtonWithClearCompletedTodos from '../TodoCounter/TodoCounter';
+import TodoClearButtonWithClearCompletedTodos from '../../containers/TodoClearButtonWithClearCompletedTodos/TodoClearButtonWithClearCompletedTodos';
 import TodoCounter from '../TodoCounter/TodoCounter';
 
 describe('TodoFooter', () => {
@@ -16,7 +16,6 @@ describe('TodoFooter', () => {
     });
   });
   describe('Components', () => {
-
     it('should have filter button', () => {
       const wrapper = shallow(<TodoFooter />);
       expect(wrapper.find(TodoFilterButtonWithConnect).exists()).toEqual(true);
@@ -31,7 +30,6 @@ describe('TodoFooter', () => {
       const wrapper = shallow(<TodoFooter />);
       expect(wrapper.find(TodoCounter).exists()).toEqual(true);
     });
-
   });
 
   describe('Events', () => {

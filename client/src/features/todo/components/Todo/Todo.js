@@ -1,15 +1,22 @@
 import React from 'react';
+import { func, bool, instanceOf } from 'prop-types';
+import { propType } from 'graphql-anywhere';
+import { LinearProgress } from 'material-ui/Progress';
 
 import './Todo.scss';
+import TodoWithDataQuery from '../../containers/TodoWithData/TodoWithData.query.gql';
 import TodoInput from '../TodoInput/TodoInput';
 import TodoFooter from '../TodoFooter/TodoFooter';
 import TodoList from '../TodoList/TodoList';
-import { LinearProgress } from 'material-ui/Progress';
 
 const Todo =
   ({
     // HOC
-    data: { loading, error, todos },
+    data: {
+      loading,
+      error,
+      todos,
+    },
 
     // events
     onDeleteTodo,
@@ -17,7 +24,7 @@ const Todo =
   }) => {
     if (error) return <div className="Todo__error">{error.toString()}</div>;
     return (
-      <div className='Todo'>
+      <div className="Todo">
         <div className="Todo__title">
           REAL-TIME TODOS
         </div>
@@ -35,19 +42,29 @@ const Todo =
           /> */}
         </div>
       </div>
-    )
+    );
   };
 
-
-Todo.propTypes = {};
+console.log(TodoWithDataQuery);
+Todo.propTypes = {
+  data: {
+    loading: bool,
+    error: instanceOf(Error),
+    todos: propType(TodoWithDataQuery).isRequired,
+  },
+  onDeleteTodo: func,
+  onToggleTodo: func,
+};
 Todo.defaultProps = {
   data: {
     loading: false,
     error: undefined,
     todos: {
-      edges: []
-    }
-  }
+      edges: [],
+    },
+  },
+  onDeleteTodo: undefined,
+  onToggleTodo: undefined,
 };
 
 export default Todo;

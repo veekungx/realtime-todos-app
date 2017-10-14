@@ -8,12 +8,12 @@ import TodoWithData from '../TodoWithData/TodoWithData.query.gql';
 export default compose(
   graphql(ClearCompletedTodosMutation, { name: 'clearCompletedTodos' }),
   withHandlers({
-    onClear: props => event => {
+    onClear: props => () => {
       props.clearCompletedTodos({
         refetchQueries: [{
-          query: TodoWithData
-        }]
-      })
-    }
-  })
+          query: TodoWithData,
+        }],
+      });
+    },
+  }),
 )(TodoClearButton);

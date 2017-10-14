@@ -10,15 +10,16 @@ const FortuneTeller =
     fortune,
     isOpen,
 
-    //events
-    onRequestClose
-  }) => (
+    // events
+    onRequestClose,
+  }) =>
+    (
       <div className="FortuneTeller">
         <Snackbar
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={isOpen}
           onRequestClose={() => {
-            onRequestClose(() => false)
+            onRequestClose(() => false);
           }}
           autoHideDuration={5000}
           message={fortune}
@@ -34,7 +35,7 @@ FortuneTeller.propTypes = {
 
 FortuneTeller.defaultProps = {
   isOpen: false,
-  fortune: "",
+  fortune: '',
   onRequestClose: undefined,
 };
 

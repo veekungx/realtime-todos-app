@@ -6,14 +6,14 @@ import TodoList from './TodoList';
 import { generateMockNodeTodo } from '../../../../helpers/generateMockTodo';
 
 const buildStory = (edges = []) => {
-  const todos = { edges }
+  const todos = { edges };
 
   const handlers = {
     onDeleteTodo: action('onDeleteTodo'),
     onToggleTodo: action('onToggleTodo'),
-  }
+  };
 
-  return <TodoList todos={todos} {...handlers} />
+  return <TodoList todos={todos} {...handlers} />;
 };
 
 storiesOf('TodoList', module)
@@ -42,4 +42,4 @@ storiesOf('TodoList', module)
     ];
     return buildStory(edges);
   })
-  .add('no data', () => buildStory())
+  .add('no data', () => buildStory());

@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FortuneTeller from './FortuneTeller';
 import Snackbar from 'material-ui/Snackbar';
+import FortuneTeller from './FortuneTeller';
+
 describe('FortuneTeller', () => {
   describe('Components', () => {
     it('should have Snackbar', () => {
@@ -11,14 +12,14 @@ describe('FortuneTeller', () => {
   });
   describe('Props', () => {
     it('should pass isOpen prop to Snackbar', () => {
-      const wrapper = shallow(<FortuneTeller isOpen={true} />);
+      const wrapper = shallow(<FortuneTeller isOpen />);
       expect(wrapper.find('withStyles(Snackbar)').props().open).toEqual(true);
     });
 
     it('should pass fortune prop to Snackbar', () => {
       const wrapper = shallow(<FortuneTeller fortune="Some Fortune" />);
       expect(wrapper.find('withStyles(Snackbar)').props().message).toContain('Some Fortune');
-    })
+    });
   });
 
   describe('Events', () => {

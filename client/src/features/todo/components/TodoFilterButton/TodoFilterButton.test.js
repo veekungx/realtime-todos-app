@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import TodoFilterButton from './TodoFilterButton';
 
 describe('TodoFilterButton', () => {
-
   describe('State', () => {
     it('should render isSelected state', () => {
       const wrapper = shallow(<TodoFilterButton isSelected />);
@@ -28,7 +27,7 @@ describe('TodoFilterButton', () => {
       const wrapper = shallow(<TodoFilterButton filter="TODO_ALL" onSelect={handler} />);
 
       wrapper.find('.TodoFilterButton').simulate('click');
-      expect(handler).toHaveBeenCalledWith("TODO_ALL");
+      expect(handler).toHaveBeenCalledWith('TODO_ALL');
     });
   });
 });

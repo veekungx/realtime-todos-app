@@ -19,12 +19,12 @@ describe('TodoItem', () => {
 
   describe('State', () => {
     it('should have TODO_ACTIVE state', () => {
-      const todo = generateMockTodo({ state: "TODO_ACTIVE" });
+      const todo = generateMockTodo({ state: 'TODO_ACTIVE' });
       const wrapper = shallow(<TodoItem todo={todo} />);
       expect(wrapper.find('.TodoItem').hasClass('TodoItem--TODO_ACTIVE')).toEqual(true);
     });
     it('should have TODO_COMPLETED state', () => {
-      const todo = generateMockTodo({ state: "TODO_COMPLETED" });
+      const todo = generateMockTodo({ state: 'TODO_COMPLETED' });
       const wrapper = shallow(<TodoItem todo={todo} />);
       expect(wrapper.find('.TodoItem').hasClass('TodoItem--TODO_COMPLETED')).toEqual(true);
     });
@@ -32,7 +32,7 @@ describe('TodoItem', () => {
 
   describe('Props', () => {
     it('should render title', () => {
-      const todo = generateMockTodo({ title: "Hello World" });
+      const todo = generateMockTodo({ title: 'Hello World' });
       const wrapper = shallow(<TodoItem todo={todo} />);
       expect(wrapper.find('.TodoItem__title').text()).toEqual('Hello World');
     });
