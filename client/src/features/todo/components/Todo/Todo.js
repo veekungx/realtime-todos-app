@@ -22,25 +22,33 @@ const Todo =
     onDeleteTodo,
     onToggleTodo,
   }) => {
-    if (error) return <div className="Todo__error">{error.toString()}</div>;
     return (
       <div className="Todo">
         <div className="Todo__title">
           REAL-TIME TODOS
         </div>
-        <div className="Todo__container">
-          <TodoFooter counter={todos ? todos.edges.length : 0} />
-          <TodoInput />
-          {loading
-            ? <LinearProgress />
-            : <LinearProgress color="white" mode="determinate" value={0} />
-          }
-          <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
-          {/* <TodoPagination
+
+        {error &&
+          <div className="Todo__error">
+            ERROR: please come back later.
+          </div>
+        }
+
+        {!error &&
+          <div className="Todo__container">
+            <TodoFooter counter={todos ? todos.edges.length : 0} />
+            <TodoInput />
+            {loading
+              ? <LinearProgress />
+              : <LinearProgress color="white" mode="determinate" value={0} />
+            }
+            <TodoList todos={todos} onDeleteTodo={onDeleteTodo} onToggleTodo={onToggleTodo} />
+            {/* <TodoPagination
             hasNextPage
             hasPrevPage
           /> */}
-        </div>
+          </div>
+        }
       </div>
     );
   };
