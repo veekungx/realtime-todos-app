@@ -15,5 +15,4 @@ const events = {
 
 storiesOf('TodoInput', module)
   .add('default', () => <TodoInput {...props} {...events} />)
-  .add('has text', () => <TodoInput {...props} value="Some Text" {...events} />)
   .add('all todos completed', () => <TodoInput {...props} isCompleteAll {...events} />);
